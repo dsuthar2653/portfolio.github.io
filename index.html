@@ -12,20 +12,19 @@
         /* ── CORE SETTINGS ── */
         html {
             scroll-behavior: smooth;
-            interpolate-size: allow-keywords;
             color-scheme: dark;
-            /* Prevents fixed nav from covering section headings */
-            scroll-padding-top: 100px;
+            scroll-padding-top: 120px;
+            /* Ensures section titles aren't hidden by nav */
         }
 
         :root {
             --navy: #040811;
-            --navy-light: rgba(10, 18, 36, 0.8);
+            --navy-light: rgba(10, 18, 36, 0.9);
             --accent: #4f8ef7;
             --gold: #c9a84c;
             --text: #e8eaf0;
             --text-muted: #8895b3;
-            --border: rgba(79, 142, 247, 0.12);
+            --border: rgba(79, 142, 247, 0.2);
             --sans: 'Syne', sans-serif;
             --serif: 'DM Serif Display', serif;
             --mono: 'DM Mono', monospace;
@@ -42,8 +41,8 @@
             background-attachment: fixed;
             color: var(--text);
             font-family: var(--sans);
-            line-height: 1.6;
             margin: 0;
+            overflow-x: hidden;
         }
 
         #bg-canvas {
@@ -54,82 +53,62 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
-            opacity: 0.5;
         }
 
-        /* ── SQUIRCLE NAVIGATION (FIXED) ── */
+        /* ── REBUILT NAVIGATION (STABLE & CLICKABLE) ── */
         nav {
             position: fixed;
-            top: 0;
+            top: 2rem;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1000;
-            width: fit-content;
-            margin: 2rem auto;
-            padding: 8px;
-            border-radius: 8px;
+            z-index: 9999;
+            /* Highest priority */
+            background: rgba(4, 8, 17, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 6px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
         }
 
-        nav>ul {
-            position: relative;
-            padding: 0;
-            margin: 0;
+        nav ul {
             list-style: none;
             display: flex;
-            z-index: 10;
+            margin: 0;
+            padding: 0;
+            gap: 4px;
         }
 
-        /* The glass background - fixed with pointer-events */
-        nav>ul::after {
-            content: "";
-            position: absolute;
-            z-index: -3;
-            inset: -4px;
-            border-radius: 12px;
-            background: rgba(4, 8, 17, 0.95);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            pointer-events: none;
-        }
-
-        /* The sliding hover block - fixed with pointer-events and z-index */
-        nav::after {
-            content: "";
-            border-radius: 8px;
-            position-anchor: --test;
-            position: absolute;
-            top: anchor(top);
-            left: anchor(left);
-            right: anchor(right);
-            bottom: anchor(bottom);
-            background: rgba(255, 255, 255, 0.08);
-            transition: 500ms;
-            transition-timing-function: linear(0, 0.008 1.1%, 0.031 2.2%, 0.129 4.8%, 0.257 7.2%, 0.671 14.2%, 0.789 16.5%, 0.881 18.6%, 0.957 20.7%, 1.019 22.9%, 1.063 25.1%, 1.094 27.4%, 1.114 30.7%, 1.112 34.5%, 1.018 49.9%, 0.99 59.1%, 1);
-            pointer-events: none;
-            z-index: -1;
+        nav li {
+            position: relative;
         }
 
         nav a {
             display: block;
-            padding: 0.8rem 1.4rem;
+            padding: 0.7rem 1.2rem;
             text-decoration: none;
-            color: white;
+            color: var(--text);
             font-family: var(--mono);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 1px;
             text-transform: uppercase;
+            border-radius: 100px;
+            transition: all 0.3s ease;
             position: relative;
-            z-index: 20;
+            z-index: 2;
         }
 
+        /* Hover effect replacement for anchor-positioning */
         nav a:hover {
-            anchor-name: --test;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
         }
 
-        /* ── LAYOUT & CARDS ── */
+        /* ── LAYOUT ── */
         .wrapper {
-            padding: 8rem 10% 4rem;
-            max-width: 1300px;
+            padding: 6rem 10% 4rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -145,211 +124,112 @@
 
         .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
         }
 
         .card {
             background: var(--navy-light);
             border: 1px solid var(--border);
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 16px;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            backdrop-filter: blur(20px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
         /* ── TIMELINE ── */
         .timeline {
-            position: relative;
             border-left: 2px solid var(--border);
-            padding-left: 2.5rem;
-            margin-left: 1rem;
+            padding-left: 2rem;
+            margin-left: 0.5rem;
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .timeline-item::before {
             content: "";
             position: absolute;
-            left: calc(-2.5rem - 7px);
+            left: calc(-2rem - 6px);
             top: 8px;
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: var(--accent);
-            box-shadow: 0 0 15px var(--accent);
+            box-shadow: 0 0 10px var(--accent);
         }
 
         .timeline-date {
             font-family: var(--mono);
             color: var(--gold);
-            font-size: 0.8rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
             display: block;
+            margin-bottom: 0.5rem;
         }
 
         .timeline-title {
             font-family: var(--serif);
-            font-size: 1.8rem;
-            margin-bottom: 0.3rem;
+            font-size: 1.5rem;
+            margin: 0;
         }
 
         .timeline-sub {
-            font-family: var(--mono);
             color: var(--accent);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: block;
-            letter-spacing: 1px;
+            font-size: 0.85rem;
+            font-family: var(--mono);
         }
 
         /* ── GALAXY BUTTON ── */
         .galaxy-button {
-            position: relative;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-family: var(--mono);
+            font-size: 0.9rem;
             display: inline-block;
-            --active: 0;
+            transition: transform 0.2s;
+            border: none;
+            cursor: pointer;
         }
 
         .galaxy-button:hover {
-            --active: 1;
-        }
-
-        .galaxy-button button {
-            --cut: 0.1em;
-            background: hsl(215 calc(var(--active) * 100%) calc(12% - (var(--active) * 8%)));
-            font-size: 1rem;
-            font-family: var(--mono);
-            border: 0;
-            cursor: pointer;
-            padding: 1em 2.8em;
-            display: flex;
-            align-items: center;
-            border-radius: 2rem;
-            position: relative;
-            transition: all 0.3s;
-            scale: calc(1 + (var(--active) * 0.05));
-            overflow: hidden;
-            color: #fff;
-        }
-
-        .text {
-            position: relative;
-            z-index: 2;
-            letter-spacing: 1px;
-        }
-
-        /* Galaxy Star CSS */
-        .star {
-            height: calc(var(--size) * 1px);
-            aspect-ratio: 1;
-            background: white;
-            border-radius: 50%;
-            position: absolute;
-            opacity: var(--alpha);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(10deg) rotate(0deg) translateY(calc(var(--distance) * 1px));
-            animation: orbit calc(var(--duration) * 1s) calc(var(--delay) * -1s) infinite linear;
-        }
-
-        @keyframes orbit {
-            to {
-                transform: translate(-50%, -50%) rotate(10deg) rotate(360deg) translateY(calc(var(--distance) * 1px));
-            }
-        }
-
-        .galaxy {
-            position: absolute;
-            width: 100%;
-            aspect-ratio: 1;
-            top: 50%;
-            left: 50%;
-            translate: -50% -50%;
-            overflow: hidden;
-            opacity: var(--active);
-            transition: opacity 0.3s;
-        }
-
-        .galaxy__ring {
-            height: 200%;
-            width: 200%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            border-radius: 50%;
-            transform: translate(-28%, -40%) rotateX(-24deg) rotateY(-30deg) rotateX(90deg);
-            transform-style: preserve-3d;
-        }
-
-        .spark {
-            position: absolute;
-            inset: 0;
-            border-radius: 2rem;
-            rotate: 0deg;
-            overflow: hidden;
-            mask: linear-gradient(white, transparent 50%);
-            animation: flip 3.6s infinite steps(2, end);
-        }
-
-        @keyframes flip {
-            to {
-                rotate: 360deg;
-            }
-        }
-
-        .spark:before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            aspect-ratio: 1;
-            top: 0%;
-            left: 50%;
-            translate: -50% -15%;
-            background: conic-gradient(from 0deg, transparent 0 340deg, white 360deg);
-            animation: rotate 1.8s linear infinite both;
-        }
-
-        @keyframes rotate {
-            to {
-                transform: rotate(90deg);
-            }
-        }
-
-        .backdrop {
-            position: absolute;
-            inset: 0.1em;
-            background: inherit;
-            border-radius: 2rem;
+            transform: scale(1.05);
+            background: #3b7ce6;
         }
 
         @media (max-width: 768px) {
             nav {
-                width: 95%;
-                margin: 1rem auto;
+                width: 90%;
+                top: 1rem;
+                overflow-x: auto;
+                justify-content: flex-start;
+            }
+
+            nav ul {
+                width: 100%;
             }
 
             nav a {
-                padding: 0.5rem 0.6rem;
-                font-size: 0.55rem;
+                padding: 0.5rem 0.8rem;
+                font-size: 0.6rem;
             }
 
             .wrapper {
-                padding: 6rem 5%;
+                padding: 4rem 5%;
             }
 
             #about {
                 flex-direction: column-reverse;
                 text-align: center;
-                padding-top: 100px;
+                padding-top: 100px !important;
             }
         }
     </style>
@@ -370,125 +250,85 @@
     </nav>
 
     <section id="about"
-        style="min-height: 100vh; display: flex; align-items: center; padding: 140px 10% 60px; gap: 4rem;">
+        style="min-height: 100vh; display: flex; align-items: center; padding: 120px 10% 60px; gap: 4rem;">
         <div class="hero-content" style="flex: 1;">
-            <span class="section-label" style="color: var(--accent); margin-bottom: 1rem;">TECHNICAL SOLUTION ASSOCIATE
-                @ EXPEDIA GROUP</span>
-            <h1
-                style="font-family: var(--serif); font-size: clamp(3.5rem, 8vw, 6.5rem); line-height: 0.9; margin: 1.5rem 0;">
-                Dipesh<br><em style="color: var(--accent); font-style: italic;">Suthar</em></h1>
-            <div
-                style="border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 2.5rem; max-width: 600px;">
-                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1rem;"><strong>Current
-                        Impact:</strong> Solving complex partner API integrations and maintaining data integrity for
-                    global travel supply chains.</p>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">Bridging the gap between legacy SAP S/4HANA
-                    systems and modern cloud architectures through automation and meticulous master data strategy.</p>
-            </div>
-
-            <div class="galaxy-button">
-                <button onclick="window.location.href='#contact'">
-                    <span class="spark"></span><span class="backdrop"></span>
-                    <span class="galaxy"><span class="galaxy__ring">
-                            <span class="star"></span><span class="star"></span><span class="star"></span><span
-                                class="star"></span><span class="star"></span>
-                        </span></span>
-                    <span class="text">LET'S CONNECT</span>
-                </button>
-            </div>
+            <span class="section-label" style="color: var(--accent);">TECHNICAL SOLUTION ASSOCIATE @ EXPEDIA
+                GROUP</span>
+            <h1 style="font-family: var(--serif); font-size: clamp(3rem, 7vw, 6rem); line-height: 1; margin: 1.5rem 0;">
+                Dipesh<br><em style="color: var(--accent); font-style: italic;">Suthar</em>
+            </h1>
+            <p
+                style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 2rem;">
+                Bridging the gap between legacy SAP S/4HANA systems and modern cloud architectures through automation
+                and meticulous data strategy.
+            </p>
+            <a href="#contact" class="galaxy-button">LET'S CONNECT</a>
         </div>
         <div
-            style="width: 340px; height: 440px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 60px rgba(0,0,0,0.8);">
-            <img src="img/new_profile.png" alt="Dipesh Suthar"
-                style="width: 100%; height: 100%; object-fit: cover; filter: brightness(1.1) contrast(1.05);">
+            style="width: 320px; height: 420px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border);">
+            <img src="img/new_profile.png" alt="Dipesh Suthar" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
     </section>
 
     <div class="wrapper" id="experience">
-        <span class="section-label">01. Work Experience</span>
+        <span class="section-label">01. Experience</span>
         <div class="timeline">
             <div class="timeline-item">
                 <span class="timeline-date">MAR 2025 — PRESENT</span>
                 <h3 class="timeline-title">Technical Solution Associate</h3>
-                <span class="timeline-sub">Expedia Group | Prague, Czechia</span>
-                <p style="color: var(--text-muted);">Collaborating with global partners to troubleshoot API integrations
-                    and travel solutions. Analyzing technical requirements to scale systems and reduce operational
-                    bottlenecks in customer data management.</p>
+                <span class="timeline-sub">Expedia Group | Prague</span>
+                <p style="color: var(--text-muted);">Troubleshooting API integrations and scaling data management
+                    systems.</p>
             </div>
             <div class="timeline-item">
                 <span class="timeline-date">JUN 2022 — MAR 2025</span>
                 <h3 class="timeline-title">Night Receptionist / Auditor</h3>
                 <span class="timeline-sub">Hotel Emblem Prague</span>
-                <p style="color: var(--text-muted);">Mastered the Mews hospitality system for corporate auditing and
-                    check-in management. Developed high attention to detail and data validation skills during critical
-                    night-cycle reporting.</p>
+                <p style="color: var(--text-muted);">Managed corporate auditing and real-time data validation using the
+                    Mews system.</p>
             </div>
         </div>
     </div>
 
     <div class="wrapper" id="projects">
-        <span class="section-label">02. Selected Projects</span>
+        <span class="section-label">02. Projects</span>
         <div class="grid-2">
             <div class="card">
-                <h4 style="font-family: var(--serif); font-size: 1.6rem; margin-bottom: 1rem; color: var(--accent);">
-                    Find My Salon Website</h4>
-                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">A full-stack PHP
-                    platform allowing users to discover salons, book appointments in real-time, and process secure
-                    payments.</p>
-                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                    <span
-                        style="font-family: var(--mono); font-size: 0.65rem; padding: 4px 8px; border: 1px solid var(--border); color: var(--gold);">PHP</span>
-                    <span
-                        style="font-family: var(--mono); font-size: 0.65rem; padding: 4px 8px; border: 1px solid var(--border); color: var(--gold);">MySQL</span>
-                </div>
+                <h4 style="color: var(--accent); font-family: var(--serif); font-size: 1.4rem;">Find My Salon</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">PHP/MySQL full-stack booking platform.</p>
             </div>
             <div class="card">
-                <h4 style="font-family: var(--serif); font-size: 1.6rem; margin-bottom: 1rem; color: var(--accent);">
-                    Cafe Billing System</h4>
-                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">A high-performance C#
-                    WinForms application for real-time order tracking, receipt generation, and daily financial auditing.
+                <h4 style="color: var(--accent); font-family: var(--serif); font-size: 1.4rem;">Cafe Billing System</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">C# WinForms application for financial auditing.
                 </p>
-                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                    <span
-                        style="font-family: var(--mono); font-size: 0.65rem; padding: 4px 8px; border: 1px solid var(--border); color: var(--gold);">C#</span>
-                    <span
-                        style="font-family: var(--mono); font-size: 0.65rem; padding: 4px 8px; border: 1px solid var(--border); color: var(--gold);">.NET</span>
-                </div>
             </div>
         </div>
     </div>
 
     <div class="wrapper" id="certificates">
-        <div class="grid-2" style="align-items: start;">
+        <div class="grid-2">
             <div>
                 <span class="section-label">03. Certificates</span>
-                <div class="card" style="margin-bottom: 1.5rem;">
-                    <h5 style="color: var(--gold); font-family: var(--mono); font-size: 0.7rem; margin-bottom: 0.5rem;">
-                        SERVICENOW</h5>
-                    <p style="font-family: var(--serif); font-size: 1.2rem; margin-bottom: 1rem;">Public Learning Resume
-                    </p>
+                <div class="card" style="margin-bottom: 1rem;">
+                    <h5 style="color: var(--gold); font-family: var(--mono); font-size: 0.7rem;">SERVICENOW</h5>
                     <a href="https://nowlearning.servicenow.com/lxp/en/pages/nl-public-resume?id=nl_public&user=dipeshsuth246379"
-                        target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.85rem;">View
-                        Credentials ↗</a>
+                        target="_blank" style="color: var(--accent); text-decoration: none;">View Learning Resume ↗</a>
                 </div>
                 <div class="card">
-                    <h5 style="color: var(--gold); font-family: var(--mono); font-size: 0.7rem; margin-bottom: 0.5rem;">
-                        MICROSOFT LEARN</h5>
-                    <p style="font-family: var(--serif); font-size: 1.2rem; margin-bottom: 0.5rem;">AI Fundamentals</p>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Neural networks, ML, and NLP core concepts.
-                    </p>
+                    <h5 style="color: var(--gold); font-family: var(--mono); font-size: 0.7rem;">MICROSOFT</h5>
+                    <p style="margin: 0;">AI Fundamentals (Neural Networks & ML)</p>
                 </div>
             </div>
             <div id="education">
                 <span class="section-label">04. Studies</span>
                 <div class="timeline">
-                    <div class="timeline-item" style="margin-bottom: 2.5rem;">
+                    <div class="timeline-item">
                         <span class="timeline-date">2022 — 2025</span>
-                        <h3 class="timeline-title" style="font-size: 1.4rem;">Bachelor in Informatics</h3>
+                        <h3 class="timeline-title">Bachelors in Informatics</h3>
                         <span class="timeline-sub">Czech University of Life Sciences</span>
                     </div>
                     <div class="timeline-item">
-                        <h3 class="timeline-title" style="font-size: 1.4rem;">Diploma in Information Technology</h3>
+                        <h3 class="timeline-title">Diploma in IT</h3>
                         <span class="timeline-sub">R. C. Technical Institute | GPA: 8.22</span>
                     </div>
                 </div>
@@ -496,62 +336,45 @@
         </div>
     </div>
 
-    <div class="wrapper" id="contact" style="background: rgba(0,0,0,0.5); border-top: 1px solid var(--border);">
+    <div class="wrapper" id="contact" style="background: rgba(255,255,255,0.02); border-radius: 40px 40px 0 0;">
         <div class="grid-2">
             <div>
-                <h2 style="font-family: var(--serif); font-size: 3.5rem; margin-bottom: 1.5rem;">Message <em
-                        style="color: var(--accent);">Me</em></h2>
-                <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.1rem;">Ready to discuss SAP
-                    S/4HANA integration, API solution architecture, or Technical Specialist opportunities.</p>
-                <div style="font-family: var(--mono); font-size: 0.9rem; color: var(--gold); line-height: 2;">
-                    <p>📍 Prague, Czechia</p>
-                    <p>📧 dipeshsuthar2653@gmail.com</p>
-                    <p>🔗 <a href="https://linkedin.com/in/dipesh-suthar"
-                            style="color: var(--accent); text-decoration: none;">linkedin.com/in/dipesh-suthar ↗</a></p>
-                </div>
+                <h2 style="font-family: var(--serif); font-size: 3rem;">Let's <em
+                        style="color: var(--accent);">Talk</em></h2>
+                <p style="color: var(--text-muted);">📍 Prague, Czechia<br>📧 dipeshsuthar2653@gmail.com</p>
             </div>
             <div class="card">
-                <form action="#" style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    <input type="text" placeholder="Full Name"
-                        style="padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; color: #fff; font-family: var(--sans);">
-                    <input type="email" placeholder="Email Address"
-                        style="padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; color: #fff; font-family: var(--sans);">
-                    <textarea placeholder="Tell me about your technical needs..." rows="5"
-                        style="padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; color: #fff; font-family: var(--sans);"></textarea>
-                    <div class="galaxy-button" style="width: 100%;">
-                        <button type="submit" style="width: 100%; justify-content: center;">
-                            <span class="spark"></span><span class="backdrop"></span>
-                            <span class="text">SEND SECURE MESSAGE</span>
-                        </button>
-                    </div>
+                <form style="display: flex; flex-direction: column; gap: 1rem;">
+                    <input type="text" placeholder="Name"
+                        style="padding: 1rem; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: white;">
+                    <textarea placeholder="Message" rows="4"
+                        style="padding: 1rem; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: white;"></textarea>
+                    <button class="galaxy-button">Send Message</button>
                 </form>
             </div>
         </div>
     </div>
 
     <script>
-        /* ── INTERACTIVE PARTICLE BACKGROUND SCRIPT ── */
+        /* ── INTERACTIVE CANVAS ── */
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
         const mouse = { x: null, y: null, radius: 150 };
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.x;
-            mouse.y = e.y;
-        });
+        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
 
         function init() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             particles = [];
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 80; i++) {
                 particles.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
                     size: Math.random() * 2 + 1,
-                    speedX: Math.random() * 1 - 0.5,
-                    speedY: Math.random() * 1 - 0.5
+                    speedX: Math.random() * 0.5 - 0.25,
+                    speedY: Math.random() * 0.5 - 0.25
                 });
             }
         }
@@ -559,36 +382,24 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
-                p.x += p.speedX;
-                p.y += p.speedY;
-
-                if (p.x > canvas.width) p.x = 0;
-                if (p.x < 0) p.x = canvas.width;
-                if (p.y > canvas.height) p.y = 0;
-                if (p.y < 0) p.y = canvas.height;
+                p.x += p.speedX; p.y += p.speedY;
+                if (p.x > canvas.width) p.x = 0; else if (p.x < 0) p.x = canvas.width;
+                if (p.y > canvas.height) p.y = 0; else if (p.y < 0) p.y = canvas.height;
 
                 let dx = mouse.x - p.x;
                 let dy = mouse.y - p.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius) {
-                    ctx.strokeStyle = `rgba(79, 142, 247, ${1 - distance / mouse.radius})`;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(mouse.x, mouse.y);
-                    ctx.stroke();
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < mouse.radius) {
+                    ctx.strokeStyle = `rgba(79, 142, 247, ${1 - dist / mouse.radius})`;
+                    ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
                 }
-
-                ctx.fillStyle = 'rgba(79, 142, 247, 0.5)';
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.fillStyle = 'rgba(79, 142, 247, 0.3)';
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
             });
             requestAnimationFrame(animate);
         }
-
         window.addEventListener('resize', init);
-        init();
-        animate();
+        init(); animate();
     </script>
 </body>
 
