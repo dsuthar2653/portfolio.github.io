@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alex Morgan — Software Engineer</title>
+    <title>Dipesh Suthar — Software Developer</title>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700&display=swap"
         rel="stylesheet" />
@@ -51,7 +51,6 @@
             overflow-x: hidden;
         }
 
-        /* ── NOISE TEXTURE OVERLAY ── */
         body::before {
             content: '';
             position: fixed;
@@ -62,7 +61,6 @@
             opacity: 0.5;
         }
 
-        /* ── NAV ── */
         nav {
             position: fixed;
             top: 0;
@@ -87,15 +85,15 @@
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             list-style: none;
             align-items: center;
         }
 
         .nav-links a {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 500;
-            letter-spacing: 0.14em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--text-muted);
             text-decoration: none;
@@ -115,12 +113,6 @@
             transition: background 0.2s, color 0.2s !important;
         }
 
-        .nav-cta:hover {
-            background: var(--accent-glow) !important;
-            color: #fff !important;
-        }
-
-        /* ── HERO ── */
         #hero {
             min-height: 100vh;
             display: grid;
@@ -131,16 +123,6 @@
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
-        }
-
-        .hero-bg-glow {
-            position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(79, 142, 247, 0.07) 0%, transparent 70%);
-            pointer-events: none;
         }
 
         .hero-eyebrow {
@@ -207,13 +189,6 @@
             margin-bottom: 2.5rem;
         }
 
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
         .btn-primary {
             display: inline-flex;
             align-items: center;
@@ -229,36 +204,6 @@
             border-radius: 3px;
             text-decoration: none;
             transition: all 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            background: #82b0ff;
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 1px solid var(--border-bright);
-            color: var(--accent);
-            font-family: var(--sans);
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 0.9rem 2rem;
-            border-radius: 3px;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent);
-            background: var(--accent-glow);
-            transform: translateY(-2px);
         }
 
         .hero-stats {
@@ -272,7 +217,6 @@
             font-family: var(--serif);
             font-size: 2.2rem;
             color: var(--text);
-            line-height: 1;
         }
 
         .stat-num span {
@@ -284,143 +228,9 @@
             font-family: var(--mono);
             font-size: 0.68rem;
             color: var(--text-dim);
-            letter-spacing: 0.12em;
             text-transform: uppercase;
-            margin-top: 0.2rem;
         }
 
-        /* Photo */
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .photo-card {
-            width: 340px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 0.5px solid var(--border-bright);
-            background: var(--navy-3);
-            position: relative;
-            box-shadow: 0 0 60px rgba(79, 142, 247, 0.08);
-        }
-
-        .photo-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--gold));
-            z-index: 2;
-        }
-
-        .photo-placeholder {
-            width: 100%;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            background: linear-gradient(160deg, var(--navy-3), var(--navy-4));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .photo-placeholder::after {
-            content: '';
-            position: absolute;
-            bottom: -40px;
-            left: -40px;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: var(--accent-glow);
-        }
-
-        .avatar-circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: var(--navy-4);
-            border: 1.5px solid var(--border-bright);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--serif);
-            font-size: 2.2rem;
-            color: var(--accent);
-            position: relative;
-            z-index: 1;
-        }
-
-        .photo-placeholder p {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            z-index: 1;
-        }
-
-        .photo-info {
-            padding: 1rem 1.25rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 0.5px solid var(--border);
-        }
-
-        .photo-info-name {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .photo-info-role {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 0.1rem;
-        }
-
-        .available-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            color: #4ade80;
-            letter-spacing: 0.08em;
-            background: rgba(74, 222, 128, 0.08);
-            border: 0.5px solid rgba(74, 222, 128, 0.2);
-            padding: 0.3rem 0.7rem;
-            border-radius: 2px;
-        }
-
-        .deco-ring {
-            position: absolute;
-            top: -30px;
-            right: -30px;
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 0.5px solid var(--border);
-        }
-
-        .deco-ring-2 {
-            position: absolute;
-            bottom: -50px;
-            left: -50px;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            border: 0.5px solid var(--gold-dim);
-        }
-
-        /* ── SHARED ── */
         .wrapper {
             max-width: 1200px;
             margin: 0 auto;
@@ -431,7 +241,7 @@
             border: none;
             border-top: 0.5px solid var(--border);
             max-width: 1200px;
-            margin: 0 auto 0;
+            margin: 0 auto;
         }
 
         .section-label {
@@ -456,7 +266,6 @@
         h2 {
             font-family: var(--serif);
             font-size: clamp(2rem, 3.5vw, 2.8rem);
-            line-height: 1.15;
             margin-bottom: 0.5rem;
         }
 
@@ -465,52 +274,11 @@
             color: var(--accent);
         }
 
-        /* ── ABOUT ── */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 5rem;
             margin-top: 3rem;
-            align-items: start;
-        }
-
-        .about-text p {
-            color: var(--text-muted);
-            line-height: 1.9;
-            font-size: 0.97rem;
-        }
-
-        .about-text p+p {
-            margin-top: 1rem;
-        }
-
-        /* Skills */
-        .skills-section h3 {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            color: var(--text-dim);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 1.2rem;
-        }
-
-        .skill-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-group-label {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--gold);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 0.6rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
         }
 
         .skill-pill {
@@ -521,17 +289,10 @@
             border: 0.5px solid var(--border);
             padding: 0.35rem 0.75rem;
             border-radius: 2px;
-            transition: all 0.2s;
-            cursor: default;
+            margin: 0.2rem;
+            display: inline-block;
         }
 
-        .skill-pill:hover {
-            color: var(--accent);
-            border-color: var(--border-bright);
-            background: var(--accent-glow);
-        }
-
-        /* ── PROJECTS ── */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -543,525 +304,50 @@
             background: var(--card-bg);
             border: 0.5px solid var(--border);
             border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-            cursor: default;
-            position: relative;
+            padding: 1.5rem;
+            transition: transform 0.25s;
         }
 
         .project-card:hover {
-            border-color: var(--border-bright);
             transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(79, 142, 247, 0.1);
-            background: var(--card-hover);
-        }
-
-        .project-card.featured {
-            border-color: rgba(79, 142, 247, 0.25);
-        }
-
-        /* Project image area */
-        .project-img {
-            width: 100%;
-            height: 200px;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .project-img-inner {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.4s ease;
-            position: relative;
-        }
-
-        .project-card:hover .project-img-inner {
-            transform: scale(1.03);
-        }
-
-        /* Unique SVG backgrounds per project */
-        .proj-bg-1 {
-            background: linear-gradient(135deg, #0d1f3c 0%, #0f2d4a 50%, #0a1a30 100%);
-        }
-
-        .proj-bg-2 {
-            background: linear-gradient(135deg, #1a0d2e 0%, #2a1040 50%, #120920 100%);
-        }
-
-        .proj-bg-3 {
-            background: linear-gradient(135deg, #0d2420 0%, #0f3030 50%, #061a18 100%);
-        }
-
-        .proj-bg-4 {
-            background: linear-gradient(135deg, #2a1a08 0%, #3d2510 50%, #1a1008 100%);
-        }
-
-        .proj-icon-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 64px;
-            height: 64px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 0.5px solid rgba(255, 255, 255, 0.1);
-            font-size: 1.8rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .proj-img-label {
-            position: absolute;
-            bottom: 10px;
-            right: 12px;
-            font-family: var(--mono);
-            font-size: 0.62rem;
-            color: rgba(255, 255, 255, 0.3);
-            letter-spacing: 0.1em;
-        }
-
-        .project-img .featured-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-family: var(--mono);
-            font-size: 0.62rem;
-            color: var(--accent);
-            background: rgba(79, 142, 247, 0.15);
-            border: 0.5px solid rgba(79, 142, 247, 0.3);
-            padding: 0.2rem 0.55rem;
-            border-radius: 2px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            z-index: 3;
-        }
-
-        /* Grid pattern overlays */
-        .grid-overlay {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(79, 142, 247, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(79, 142, 247, 0.05) 1px, transparent 1px);
-            background-size: 28px 28px;
-        }
-
-        /* Project body */
-        .project-body {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.6rem;
-        }
-
-        .project-name {
-            font-family: var(--serif);
-            font-size: 1.25rem;
-            color: var(--text);
-            line-height: 1.2;
-        }
-
-        .project-period {
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            color: var(--text-dim);
-            letter-spacing: 0.06em;
-            white-space: nowrap;
-            padding-top: 0.2rem;
-        }
-
-        .project-desc {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            line-height: 1.75;
-            margin-bottom: 1.2rem;
-            flex: 1;
-        }
-
-        .project-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 0.5px solid var(--border);
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.35rem;
-        }
-
-        .tag {
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            color: var(--accent);
-            background: rgba(79, 142, 247, 0.08);
-            border: 0.5px solid rgba(79, 142, 247, 0.18);
-            padding: 0.18rem 0.55rem;
-            border-radius: 2px;
-        }
-
-        .proj-link {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--text-dim);
-            text-decoration: none;
-            letter-spacing: 0.06em;
-            transition: color 0.2s;
-            white-space: nowrap;
-        }
-
-        .proj-link:hover {
-            color: var(--accent);
-        }
-
-        /* ── EXPERIENCE ── */
-        .exp-section {
-            margin-top: 3rem;
+            border-color: var(--accent);
         }
 
         .timeline {
             position: relative;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 1rem;
-            bottom: 0;
-            width: 0.5px;
-            background: var(--border);
+            margin-top: 3rem;
         }
 
         .exp-card {
             display: grid;
             grid-template-columns: auto 1fr;
-            gap: 0 2rem;
+            gap: 2rem;
             padding-bottom: 2.5rem;
-            position: relative;
-        }
-
-        .exp-dot {
-            position: relative;
-            display: flex;
-            align-items: flex-start;
-            padding-top: 0.9rem;
-        }
-
-        .exp-dot::before {
-            content: '';
-            display: block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--navy);
-            border: 1.5px solid var(--accent);
-            transition: background 0.2s;
-            position: relative;
-            z-index: 1;
-            margin-left: -5px;
-        }
-
-        .exp-card:hover .exp-dot::before {
-            background: var(--accent);
         }
 
         .exp-inner {
             background: var(--card-bg);
             border: 0.5px solid var(--border);
             border-radius: 8px;
-            padding: 1.4rem 1.6rem;
-            transition: border-color 0.25s, box-shadow 0.25s;
-        }
-
-        .exp-card:hover .exp-inner {
-            border-color: var(--border-bright);
-            box-shadow: 0 4px 24px rgba(79, 142, 247, 0.07);
-        }
-
-        .exp-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.25rem;
-            gap: 1rem;
-            flex-wrap: wrap;
+            padding: 1.5rem;
         }
 
         .exp-role {
             font-family: var(--serif);
             font-size: 1.15rem;
-            color: var(--text);
-        }
-
-        .exp-period {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--text-dim);
-            letter-spacing: 0.06em;
-            white-space: nowrap;
         }
 
         .exp-company {
-            font-family: var(--mono);
-            font-size: 0.75rem;
             color: var(--gold);
-            letter-spacing: 0.08em;
-            margin-bottom: 1rem;
-        }
-
-        .exp-company span {
-            color: var(--text-dim);
-            font-size: 0.68rem;
-            margin-left: 0.5rem;
-        }
-
-        .exp-bullets {
-            list-style: none;
-        }
-
-        .exp-bullets li {
-            font-size: 0.87rem;
-            color: var(--text-muted);
-            line-height: 1.75;
-            padding-left: 1.2rem;
-            position: relative;
-            margin-bottom: 0.35rem;
-        }
-
-        .exp-bullets li::before {
-            content: '›';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-size: 1.1rem;
-            line-height: 1.5;
-        }
-
-        .exp-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.35rem;
-            margin-top: 1rem;
-        }
-
-        .exp-skill {
             font-family: var(--mono);
-            font-size: 0.62rem;
-            color: var(--text-dim);
-            background: var(--navy);
-            border: 0.5px solid var(--border);
-            padding: 0.15rem 0.5rem;
-            border-radius: 2px;
-        }
-
-        /* ── CONTACT ── */
-        .contact-wrap {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 5rem 3rem;
-            border-top: 0.5px solid var(--border);
-        }
-
-        .contact-inner {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 5rem;
-            align-items: start;
-        }
-
-        .contact-left h2 {
-            margin-bottom: 0.75rem;
-        }
-
-        .contact-left p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .contact-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .contact-card {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: var(--card-bg);
-            border: 0.5px solid var(--border);
-            border-radius: 8px;
-            padding: 1rem 1.25rem;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .contact-card:hover {
-            border-color: var(--border-bright);
-            background: var(--card-hover);
-            transform: translateX(4px);
-        }
-
-        .contact-card-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .icon-linkedin {
-            background: rgba(10, 102, 194, 0.15);
-            border: 0.5px solid rgba(10, 102, 194, 0.25);
-        }
-
-        .icon-github {
-            background: rgba(255, 255, 255, 0.05);
-            border: 0.5px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .icon-email {
-            background: var(--accent-glow);
-            border: 0.5px solid var(--border-bright);
-        }
-
-        .contact-card-label {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text);
-        }
-
-        .contact-card-sub {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--text-dim);
-            margin-top: 0.1rem;
-        }
-
-        .contact-card-arrow {
-            margin-left: auto;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-
-        .contact-card:hover .contact-card-arrow {
-            color: var(--accent);
-        }
-
-        .availability-box {
-            background: var(--card-bg);
-            border: 0.5px solid var(--border);
-            border-radius: 8px;
-            padding: 1.75rem;
-        }
-
-        .avail-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .avail-header h3 {
-            font-family: var(--serif);
-            font-size: 1.3rem;
-        }
-
-        .avail-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #4ade80;
-            animation: pulse 2s infinite;
-        }
-
-        .avail-items {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .avail-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.87rem;
-            color: var(--text-muted);
-        }
-
-        .avail-item::before {
-            content: '✓';
-            color: #4ade80;
             font-size: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
-        /* ── FOOTER BAR ── */
-        .footer-bar {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.5rem 5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 0.5px solid var(--border);
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-bar p {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--text-dim);
-            letter-spacing: 0.08em;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-links a {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--text-dim);
-            text-decoration: none;
-            letter-spacing: 0.08em;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        /* ── SCROLL ANIMATIONS ── */
         .reveal {
             opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(20px);
+            transition: 0.6s ease-out;
         }
 
         .reveal.visible {
@@ -1069,45 +355,6 @@
             transform: translateY(0);
         }
 
-        /* ── HERO ENTRANCE ── */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .d1 {
-            animation-delay: 0.1s
-        }
-
-        .d2 {
-            animation-delay: 0.25s
-        }
-
-        .d3 {
-            animation-delay: 0.4s
-        }
-
-        .d4 {
-            animation-delay: 0.55s
-        }
-
-        .d5 {
-            animation-delay: 0.7s
-        }
-
-        .d6 {
-            animation-delay: 0.85s
-        }
-
-        /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
             nav {
                 padding: 1rem 1.5rem;
@@ -1119,33 +366,15 @@
 
             #hero {
                 grid-template-columns: 1fr;
-                padding: 7rem 1.5rem 4rem;
-                gap: 3rem;
+                padding: 7rem 1.5rem;
             }
 
-            .hero-visual {
-                order: -1;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
+            .wrapper {
+                padding: 4rem 1.5rem;
             }
 
             .projects-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .contact-inner {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .wrapper,
-            .contact-wrap,
-            .footer-bar {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
             }
         }
     </style>
@@ -1153,427 +382,166 @@
 
 <body>
 
-    <!-- NAV -->
     <nav>
-        <a href="#hero" class="nav-logo">AM.</a>
+        <a href="#hero" class="nav-logo">DS.</a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
+            <li><a href="#experience">Work Experience</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact" class="nav-cta">Hire me</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#education">Study Experience</a></li>
+            <li><a href="mailto:dipeshsuthar2653@gmail.com" class="nav-cta">Hire me</a></li>
         </ul>
     </nav>
 
-    <!-- HERO -->
     <section id="hero">
-        <div class="hero-bg-glow"></div>
-
         <div>
-            <div class="hero-eyebrow fade-up d1">
+            <div class="hero-eyebrow">
                 <span class="dot"></span>
-                Open to opportunities
+                Available in Prague
             </div>
-            <h1 class="fade-up d2">Alex<br><em>Morgan</em></h1>
-            <p class="hero-role fade-up d3">// Senior Software Engineer</p>
-            <p class="hero-bio fade-up d4">
-                I build scalable, thoughtfully architected systems — from distributed backends to polished frontends.
-                Six years turning complex problems into clean, maintainable code.
+            <h1>Dipesh<br><em>Suthar</em></h1>
+            <p class="hero-role">// Informatics Student & Software Developer</p>
+            <p class="hero-bio">
+                Building efficient software solutions with a focus on maintainable code and system integrity. Currently
+                completing my Bachelor in Informatics in Prague.
             </p>
-            <div class="cta-group fade-up d5">
-                <a href="#projects" class="btn-primary">View projects →</a>
-                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn-outline">LinkedIn ↗</a>
-            </div>
-            <div class="hero-stats fade-up d6">
+            <div class="hero-stats">
                 <div>
-                    <div class="stat-num">6<span>+</span></div>
-                    <div class="stat-label">Years exp.</div>
+                    <div class="stat-num">3<span>+</span></div>
+                    <div class="stat-label">Projects</div>
                 </div>
                 <div>
-                    <div class="stat-num">20<span>+</span></div>
-                    <div class="stat-label">Projects shipped</div>
-                </div>
-                <div>
-                    <div class="stat-num">3<span>x</span></div>
-                    <div class="stat-label">Startups scaled</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="hero-visual fade-up d4">
-            <div class="deco-ring"></div>
-            <div class="deco-ring-2"></div>
-            <div class="photo-card">
-                <div class="photo-placeholder">
-                    <div class="grid-overlay"></div>
-                    <div class="avatar-circle">AM</div>
-                    <p>Replace with your photo</p>
-                </div>
-                <div class="photo-info">
-                    <div>
-                        <div class="photo-info-name">Alex Morgan</div>
-                        <div class="photo-info-role">Senior Software Engineer</div>
-                    </div>
-                    <div class="available-badge">
-                        <span class="dot"></span>
-                        Available
-                    </div>
+                    <div class="stat-num">2</div>
+                    <div class="stat-label">Languages</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT -->
     <hr class="section-sep">
     <div class="wrapper" id="about">
-        <p class="section-label reveal">01 — About me</p>
-        <h2 class="reveal">A little about <em>what I do</em></h2>
-
+        <p class="section-label reveal">01 — About</p>
+        <h2 class="reveal">Tech stack & <em>profile</em></h2>
         <div class="about-grid">
-            <div class="about-text reveal">
-                <p>
-                    I'm a software engineer with 6+ years building production systems at startups and scale-ups. My work
-                    lives at the intersection of backend reliability and frontend craft — I care as much about the
-                    architecture as I do the experience.
-                </p>
-                <p>
-                    I've scaled systems to serve millions of users, led engineering teams, and contributed to
-                    open-source tooling used by hundreds of teams. I write clean, documented code and believe strongly
-                    in test coverage and incremental delivery.
-                </p>
-                <p>
-                    Currently open to senior engineering and tech-lead roles at product-driven companies. I value
-                    autonomy, strong team culture, and interesting technical challenges.
-                </p>
+            <div class="reveal">
+                <p>I am a detail-oriented developer with experience in PHP development and software testing. I thrive in
+                    collaborative environments, contributing to architectural decisions and back-end efficiency.</p>
+                <br>
+                <p><strong>Languages:</strong> English (B2), Czech (A1)</p>
             </div>
-
-            <div class="skills-section reveal">
-                <div class="skill-group">
-                    <div class="skill-group-label">Languages</div>
-                    <div class="skill-tags">
-                        <span class="skill-pill">TypeScript</span>
-                        <span class="skill-pill">Python</span>
-                        <span class="skill-pill">Rust</span>
-                        <span class="skill-pill">Go</span>
-                        <span class="skill-pill">SQL</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <div class="skill-group-label">Frontend</div>
-                    <div class="skill-tags">
-                        <span class="skill-pill">React</span>
-                        <span class="skill-pill">Next.js</span>
-                        <span class="skill-pill">CSS / Tailwind</span>
-                        <span class="skill-pill">GraphQL</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <div class="skill-group-label">Backend & Infra</div>
-                    <div class="skill-tags">
-                        <span class="skill-pill">Node.js</span>
-                        <span class="skill-pill">PostgreSQL</span>
-                        <span class="skill-pill">Redis</span>
-                        <span class="skill-pill">Kafka</span>
-                        <span class="skill-pill">Docker</span>
-                        <span class="skill-pill">Kubernetes</span>
-                        <span class="skill-pill">AWS</span>
-                        <span class="skill-pill">GCP</span>
-                    </div>
-                </div>
+            <div class="reveal">
+                <span class="skill-pill">Java</span>
+                <span class="skill-pill">Python</span>
+                <span class="skill-pill">C#</span>
+                <span class="skill-pill">PHP</span>
+                <span class="skill-pill">MS SQL</span>
+                <span class="skill-pill">HTML/CSS</span>
+                <span class="skill-pill">ASP.NET</span>
             </div>
         </div>
     </div>
 
-    <!-- PROJECTS -->
-    <hr class="section-sep">
-    <div class="wrapper" id="projects">
-        <p class="section-label reveal">02 — Work</p>
-        <h2 class="reveal">Selected <em>projects</em></h2>
-
-        <div class="projects-grid">
-
-            <!-- Card 1 -->
-            <div class="project-card featured reveal">
-                <div class="project-img proj-bg-1">
-                    <div class="grid-overlay"></div>
-                    <div class="project-img-inner">
-                        <div class="proj-icon-wrap">🔄</div>
-                    </div>
-                    <div class="project-img .featured-badge"
-                        style="position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:0.62rem;color:var(--accent);background:rgba(79,142,247,0.15);border:0.5px solid rgba(79,142,247,0.3);padding:0.2rem 0.55rem;border-radius:2px;letter-spacing:0.08em;text-transform:uppercase;z-index:3;">
-                        Featured</div>
-                    <div class="proj-img-label">datapipeline-oss</div>
-                </div>
-                <div class="project-body">
-                    <div class="project-header">
-                        <p class="project-name">DataPipeline OSS</p>
-                        <p class="project-period">Jan 2023 — Present</p>
-                    </div>
-                    <p class="project-desc">
-                        Open-source stream-processing framework for high-throughput pipelines with exactly-once
-                        semantics across Kafka, Postgres, and S3. Adopted by 400+ teams in production worldwide.
-                    </p>
-                    <div class="project-footer">
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Kafka</span>
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">Open Source</span>
-                        </div>
-                        <a href="#" class="proj-link">GitHub ↗</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="project-card reveal">
-                <div class="project-img proj-bg-2">
-                    <div class="grid-overlay"
-                        style="background-image: linear-gradient(rgba(167,139,250,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(167,139,250,0.05) 1px,transparent 1px); background-size:28px 28px;">
-                    </div>
-                    <div class="project-img-inner">
-                        <div class="proj-icon-wrap">⚡</div>
-                    </div>
-                    <div class="proj-img-label">nexus-platform</div>
-                </div>
-                <div class="project-body">
-                    <div class="project-header">
-                        <p class="project-name">Nexus Platform</p>
-                        <p class="project-period">Mar 2022 — Dec 2022</p>
-                    </div>
-                    <p class="project-desc">
-                        Internal developer platform for a Series B fintech. Replaced 7 legacy services with a unified
-                        API gateway — cut deployment time from 45 min to under 4 min and reduced infra costs by 38%.
-                    </p>
-                    <div class="project-footer">
-                        <div class="project-tags">
-                            <span class="tag">TypeScript</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Kubernetes</span>
-                            <span class="tag">AWS</span>
-                        </div>
-                        <a href="#" class="proj-link">Case study ↗</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="project-card reveal">
-                <div class="project-img proj-bg-3">
-                    <div class="grid-overlay"
-                        style="background-image: linear-gradient(rgba(52,211,153,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.05) 1px,transparent 1px); background-size:28px 28px;">
-                    </div>
-                    <div class="project-img-inner">
-                        <div class="proj-icon-wrap">🎨</div>
-                    </div>
-                    <div class="proj-img-label">meridian-ui</div>
-                </div>
-                <div class="project-body">
-                    <div class="project-header">
-                        <p class="project-name">Meridian UI</p>
-                        <p class="project-period">Jul 2021 — Feb 2022</p>
-                    </div>
-                    <p class="project-desc">
-                        Component library and design system spanning 3 product teams. Includes Figma tokens, accessible
-                        React components, and Storybook docs. Reduced frontend dev time by ~25%.
-                    </p>
-                    <div class="project-footer">
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Figma</span>
-                            <span class="tag">Storybook</span>
-                            <span class="tag">a11y</span>
-                        </div>
-                        <a href="#" class="proj-link">Storybook ↗</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="project-card reveal">
-                <div class="project-img proj-bg-4">
-                    <div class="grid-overlay"
-                        style="background-image: linear-gradient(rgba(251,191,36,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(251,191,36,0.05) 1px,transparent 1px); background-size:28px 28px;">
-                    </div>
-                    <div class="project-img-inner">
-                        <div class="proj-icon-wrap">🤖</div>
-                    </div>
-                    <div class="proj-img-label">autoreview-bot</div>
-                </div>
-                <div class="project-body">
-                    <div class="project-header">
-                        <p class="project-name">AutoReview Bot</p>
-                        <p class="project-period">Oct 2020 — Jun 2021</p>
-                    </div>
-                    <p class="project-desc">
-                        GitHub bot for automated PR scoring and labelling. Surfaces complexity metrics, test coverage
-                        gaps, and security anti-patterns before human review — integrated into CI/CD pipelines.
-                    </p>
-                    <div class="project-footer">
-                        <div class="project-tags">
-                            <span class="tag">Rust</span>
-                            <span class="tag">GitHub API</span>
-                            <span class="tag">CLI</span>
-                            <span class="tag">DevTools</span>
-                        </div>
-                        <a href="#" class="proj-link">GitHub ↗</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- EXPERIENCE -->
     <hr class="section-sep">
     <div class="wrapper" id="experience">
-        <p class="section-label reveal">03 — Career</p>
-        <h2 class="reveal">Work <em>experience</em></h2>
-
-        <div class="timeline exp-section">
-
+        <p class="section-label reveal">02 — Experience</p>
+        <div class="timeline">
             <div class="exp-card reveal">
-                <div class="exp-dot"></div>
                 <div class="exp-inner">
-                    <div class="exp-top">
-                        <p class="exp-role">Senior Software Engineer</p>
-                        <p class="exp-period">Jan 2022 — Present · 3 yrs</p>
-                    </div>
-                    <p class="exp-company">Acme Technologies <span>· Full-time · Remote</span></p>
-                    <ul class="exp-bullets">
-                        <li>Architected microservices platform now serving 2M+ daily active users at 99.97% uptime.</li>
-                        <li>Mentored 4 engineers; introduced RFC-based design reviews improving team alignment and
-                            reducing rework.</li>
-                        <li>Drove TypeScript adoption across the backend monolith, cutting runtime errors by 60%.</li>
-                        <li>Collaborated with product and design as tech lead on the company's flagship v3.0 release.
-                        </li>
-                    </ul>
-                    <div class="exp-skills">
-                        <span class="exp-skill">TypeScript</span><span class="exp-skill">AWS</span>
-                        <span class="exp-skill">Kubernetes</span><span class="exp-skill">PostgreSQL</span>
-                        <span class="exp-skill">React</span><span class="exp-skill">Tech Lead</span>
-                    </div>
+                    <p class="exp-role">Night Receptionist / Auditor</p>
+                    <p class="exp-company">Hotel Emblem Prague | Jun 2022 – Present</p>
+                    <p>Managed guest inquiries and corporate check-ins using the Mews system, ensuring high service
+                        standards during night audits.</p>
                 </div>
             </div>
-
             <div class="exp-card reveal">
-                <div class="exp-dot"></div>
                 <div class="exp-inner">
-                    <div class="exp-top">
-                        <p class="exp-role">Software Engineer</p>
-                        <p class="exp-period">Mar 2020 — Dec 2021 · 1 yr 9 mos</p>
-                    </div>
-                    <p class="exp-company">Velo Systems <span>· Full-time · Hybrid</span></p>
-                    <ul class="exp-bullets">
-                        <li>Built the self-serve onboarding flow from scratch — reduced time-to-value from 5 days to 2
-                            hours.</li>
-                        <li>Designed real-time notification system with WebSockets and Redis Pub/Sub, handling 500k
-                            events/day.</li>
-                        <li>Owned the API contract and documentation for all mobile clients.</li>
-                    </ul>
-                    <div class="exp-skills">
-                        <span class="exp-skill">Node.js</span><span class="exp-skill">Redis</span>
-                        <span class="exp-skill">React</span><span class="exp-skill">GraphQL</span><span
-                            class="exp-skill">GCP</span>
-                    </div>
+                    <p class="exp-role">Software Intern</p>
+                    <p class="exp-company">Bluescape | Sep 2021 – Jan 2022</p>
+                    <p>Conducted prototype testing and worked with senior programmers on architectural decisions using
+                        JUSTIN MIND.</p>
                 </div>
             </div>
-
             <div class="exp-card reveal">
-                <div class="exp-dot"></div>
                 <div class="exp-inner">
-                    <div class="exp-top">
-                        <p class="exp-role">Junior Developer</p>
-                        <p class="exp-period">Sep 2018 — Feb 2020 · 1 yr 6 mos</p>
-                    </div>
-                    <p class="exp-company">BlueArc Studio <span>· Full-time · On-site</span></p>
-                    <ul class="exp-bullets">
-                        <li>Maintained and extended a Django SaaS platform for media agencies, adding billing and SSO
-                            integrations.</li>
-                        <li>Refactored legacy jQuery frontend into a React SPA, significantly improving performance and
-                            Lighthouse scores.</li>
-                    </ul>
-                    <div class="exp-skills">
-                        <span class="exp-skill">Python</span><span class="exp-skill">Django</span>
-                        <span class="exp-skill">React</span><span class="exp-skill">PostgreSQL</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- CONTACT -->
-    <div class="contact-wrap" id="contact">
-        <div class="section-label reveal">04 — Contact</div>
-        <div class="contact-inner">
-            <div class="contact-left reveal">
-                <h2>Let's <em>connect</em></h2>
-                <p>
-                    Open to senior engineering and tech-lead roles. I'm also happy to chat about interesting problems,
-                    open-source collaboration, or just connect.
-                </p>
-                <div class="contact-cards">
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-card">
-                        <div class="contact-card-icon icon-linkedin">💼</div>
-                        <div>
-                            <div class="contact-card-label">LinkedIn</div>
-                            <div class="contact-card-sub">linkedin.com/in/yourprofile</div>
-                        </div>
-                        <span class="contact-card-arrow">→</span>
-                    </a>
-                    <a href="https://github.com/yourusername" target="_blank" class="contact-card">
-                        <div class="contact-card-icon icon-github">🐙</div>
-                        <div>
-                            <div class="contact-card-label">GitHub</div>
-                            <div class="contact-card-sub">github.com/yourusername</div>
-                        </div>
-                        <span class="contact-card-arrow">→</span>
-                    </a>
-                    <a href="mailto:alex@example.com" class="contact-card">
-                        <div class="contact-card-icon icon-email">✉️</div>
-                        <div>
-                            <div class="contact-card-label">Email</div>
-                            <div class="contact-card-sub">alex@example.com</div>
-                        </div>
-                        <span class="contact-card-arrow">→</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="availability-box reveal">
-                <div class="avail-header">
-                    <div class="avail-dot"></div>
-                    <h3>Available now</h3>
-                </div>
-                <div class="avail-items">
-                    <div class="avail-item">Full-time roles</div>
-                    <div class="avail-item">Remote or hybrid</div>
-                    <div class="avail-item">Senior / Staff Engineer</div>
-                    <div class="avail-item">Tech Lead positions</div>
-                    <div class="avail-item">Open-source collaborations</div>
+                    <p class="exp-role">PHP Developer (Apprenticeship)</p>
+                    <p class="exp-company">Bright Infosolutions | Jun 2018 – Jun 2019</p>
+                    <p>Developed responsive websites and maintained documentation including user guides and release
+                        notes.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <div class="footer-bar">
-        <p>© 2026 Alex Morgan — Built with HTML/CSS/JS</p>
-        <div class="footer-links">
-            <a href="#hero">Back to top ↑</a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+    <hr class="section-sep">
+    <div class="wrapper" id="projects">
+        <p class="section-label reveal">03 — Projects</p>
+        <div class="projects-grid">
+            <div class="project-card reveal">
+                <h3>Find My Salon</h3>
+                <p>PHP website for booking appointments, filtering packages, and online payments.</p>
+            </div>
+            <div class="project-card reveal">
+                <h3>BlackJack Game</h3>
+                <p>Python-based text game simulating casino card mechanics with file-based result logging.</p>
+            </div>
+            <div class="project-card reveal">
+                <h3>Cafe Billing System</h3>
+                <p>C# WinForms application for managing orders and generating receipts.</p>
+            </div>
         </div>
+    </div>
+
+    <hr class="section-sep">
+    <div class="wrapper" id="certificates">
+        <p class="section-label reveal">04 — Certificates</p>
+        <div class="about-grid">
+            <div class="reveal">
+                <h3>Microsoft Learn</h3>
+                <p>Fundamental AI Concepts (Feb 2024)</p>
+            </div>
+            <div class="reveal">
+                <h3>Simplilearn</h3>
+                <p>Introduction to Data Analytics (Aug 2023)</p>
+            </div>
+            <div class="reveal">
+                <h3>Vodafone Global</h3>
+                <p>Virtual IT Internship (Jul 2022)</p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-sep">
+    <div class="wrapper" id="education">
+        <p class="section-label reveal">05 — Study Experience</p>
+        <div class="timeline">
+            <div class="exp-card reveal">
+                <div class="exp-inner">
+                    <p class="exp-role">Bachelor in Informatics</p>
+                    <p class="exp-company">Czech University of Life Sciences | 2022 – 2025</p>
+                </div>
+            </div>
+            <div class="exp-card reveal">
+                <div class="exp-inner">
+                    <p class="exp-role">Diploma in Information Technology</p>
+                    <p class="exp-company">R. C. Technical Institute | GPA: 8.22</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper" style="text-align: center; color: var(--text-dim); font-size: 0.7rem;">
+        <p>© 2026 Dipesh Suthar | Prague, Czechia</p>
     </div>
 
     <script>
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
