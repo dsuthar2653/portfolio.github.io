@@ -56,7 +56,7 @@
             opacity: 0.5;
         }
 
-        /* ── SQUIRCLE NAVIGATION ── */
+        /* ── UPDATED NAVIGATION STYLES ── */
         nav {
             position: fixed;
             top: 0;
@@ -69,25 +69,17 @@
             border-radius: 8px;
         }
 
-        @supports (corner-shape: squircle) {
-            nav {
-                border-radius: 24px;
-                border-shape: squircle;
-            }
-        }
-
-        nav ul:has(:not(:hover)) {
-            anchor-name: --test;
-        }
-
         nav>ul {
             position: relative;
             padding: 0;
             margin: 0;
             list-style: none;
             display: flex;
+            z-index: 10;
+            /* Ensure links are above everything */
         }
 
+        /* This is the dark background - added pointer-events: none */
         nav>ul::after {
             content: "";
             position: absolute;
@@ -97,8 +89,10 @@
             background: rgba(4, 8, 17, 0.95);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border);
+            pointer-events: none;
         }
 
+        /* This is the sliding hover effect - added pointer-events: none */
         nav::after {
             content: "";
             border-radius: 8px;
@@ -111,6 +105,8 @@
             background: rgba(255, 255, 255, 0.08);
             transition: 500ms;
             transition-timing-function: linear(0, 0.008 1.1%, 0.031 2.2%, 0.129 4.8%, 0.257 7.2%, 0.671 14.2%, 0.789 16.5%, 0.881 18.6%, 0.957 20.7%, 1.019 22.9%, 1.063 25.1%, 1.094 27.4%, 1.114 30.7%, 1.112 34.5%, 1.018 49.9%, 0.99 59.1%, 1);
+            pointer-events: none;
+            z-index: -1;
         }
 
         nav a {
@@ -122,10 +118,9 @@
             font-size: 0.75rem;
             letter-spacing: 1px;
             text-transform: uppercase;
-        }
-
-        nav a:hover {
-            anchor-name: --test;
+            position: relative;
+            z-index: 20;
+            /* Pulls text to the very front */
         }
 
         /* ── LAYOUT & CARDS ── */
@@ -370,39 +365,63 @@
         </ul>
     </nav>
 
-    <section id="hero"
+    <section id="about"
         style="min-height: 100vh; display: flex; align-items: center; padding: 140px 10% 60px; gap: 4rem;">
-        <div class="hero-content" style="flex: 1;">
-            <span class="section-label" style="color: var(--accent); margin-bottom: 1rem;">TECHNICAL SOLUTION ASSOCIATE
-                @ EXPEDIA GROUP</span>
-            <h1
-                style="font-family: var(--serif); font-size: clamp(3.5rem, 8vw, 6.5rem); line-height: 0.9; margin: 1.5rem 0;">
-                Dipesh<br><em style="color: var(--accent); font-style: italic;">Suthar</em></h1>
-            <div
-                style="border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 2.5rem; max-width: 600px;">
-                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1rem;"><strong>Current
-                        Impact:</strong> Solving complex partner API integrations and maintaining data integrity for
-                    global travel supply chains.</p>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">Bridging the gap between legacy SAP S/4HANA
-                    systems and modern cloud architectures through automation and meticulous master data strategy.</p>
+    </section>
+
+    <div class="wrapper" id="experience">
+    </div>
+
+    <div class="wrapper" id="projects">
+    </div>
+
+    <div class="wrapper" id="certificates">
+        <div class="grid-2" style="align-items: start;">
+            <div>
+                <span class="section-label">03. Certificates</span>
             </div>
 
-            <div class="galaxy-button">
-                <button onclick="window.location.href='#contact'">
-                    <span class="spark"></span><span class="backdrop"></span>
-                    <span class="galaxy"><span class="galaxy__ring">
-                            <span class="star"></span><span class="star"></span><span class="star"></span><span
-                                class="star"></span><span class="star"></span>
-                        </span></span>
-                    <span class="text">LET'S CONNECT</span>
-                </button>
+            <div id="education">
+                <span class="section-label">04. Studies</span>
+                <div class="timeline">
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="wrapper" id="contact">
+    </div>
+    <div class="hero-content" style="flex: 1;">
+        <span class="section-label" style="color: var(--accent); margin-bottom: 1rem;">TECHNICAL SOLUTION ASSOCIATE
+            @ EXPEDIA GROUP</span>
+        <h1
+            style="font-family: var(--serif); font-size: clamp(3.5rem, 8vw, 6.5rem); line-height: 0.9; margin: 1.5rem 0;">
+            Dipesh<br><em style="color: var(--accent); font-style: italic;">Suthar</em></h1>
         <div
-            style="width: 340px; height: 440px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 60px rgba(0,0,0,0.8);">
-            <img src="img/new_profile.png" alt="Dipesh Suthar"
-                style="width: 100%; height: 100%; object-fit: cover; filter: brightness(1.1) contrast(1.05);">
+            style="border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 2.5rem; max-width: 600px;">
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1rem;"><strong>Current
+                    Impact:</strong> Solving complex partner API integrations and maintaining data integrity for
+                global travel supply chains.</p>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Bridging the gap between legacy SAP S/4HANA
+                systems and modern cloud architectures through automation and meticulous master data strategy.</p>
         </div>
+
+        <div class="galaxy-button">
+            <button onclick="window.location.href='#contact'">
+                <span class="spark"></span><span class="backdrop"></span>
+                <span class="galaxy"><span class="galaxy__ring">
+                        <span class="star"></span><span class="star"></span><span class="star"></span><span
+                            class="star"></span><span class="star"></span>
+                    </span></span>
+                <span class="text">LET'S CONNECT</span>
+            </button>
+        </div>
+    </div>
+    <div
+        style="width: 340px; height: 440px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 60px rgba(0,0,0,0.8);">
+        <img src="img/new_profile.png" alt="Dipesh Suthar"
+            style="width: 100%; height: 100%; object-fit: cover; filter: brightness(1.1) contrast(1.05);">
+    </div>
     </section>
 
     <div class="wrapper" id="experience">
