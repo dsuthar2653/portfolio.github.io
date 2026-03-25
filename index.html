@@ -8,7 +8,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700&display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/motion@10.16.2/dist/motion.js"></script>
     <style>
         /* ── RESET & THEME ── */
         *,
@@ -43,6 +42,43 @@
             font-family: var(--sans);
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* ── NATIVE CSS ANIMATIONS ── */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(1deg);
+            }
+        }
+
+        /* Classes for Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ── NAVIGATION ── */
@@ -96,17 +132,37 @@
             gap: 2rem;
         }
 
-        h1 {
+        .hero-content>* {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-content p:first-child {
+            animation-delay: 0.2s;
+        }
+
+        .hero-content h1 {
+            animation-delay: 0.4s;
             font-family: var(--serif);
             font-size: clamp(2.5rem, 6vw, 5.2rem);
             line-height: 1.1;
             margin-bottom: 1rem;
-            opacity: 0;
         }
 
-        h1 em {
+        .hero-content h1 em {
             color: var(--accent);
             font-style: italic;
+        }
+
+        .hero-content .hero-desc {
+            animation-delay: 0.6s;
+            color: var(--text-muted);
+            max-width: 550px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content .cta-area {
+            animation-delay: 0.8s;
         }
 
         .photo-card {
@@ -116,8 +172,9 @@
             border-radius: 12px;
             overflow: hidden;
             background: var(--navy-light);
-            opacity: 0;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease 0.5s forwards, float 6s ease-in-out 1.5s infinite;
+            opacity: 0;
         }
 
         .photo-card img {
@@ -127,9 +184,9 @@
             display: block;
         }
 
-        /* ── CONTENT SECTIONS ── */
+        /* ── WRAPPERS & GRIDS ── */
         .wrapper {
-            padding: 6rem 10%;
+            padding: 8rem 10%;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -142,7 +199,6 @@
             text-transform: uppercase;
             margin-bottom: 1.5rem;
             display: block;
-            opacity: 0;
         }
 
         .grid-2 {
@@ -156,13 +212,13 @@
             border: 1px solid var(--border);
             padding: 2.5rem;
             border-radius: 8px;
-            transition: border-color 0.4s;
+            transition: 0.4s;
             height: 100%;
-            opacity: 0;
         }
 
         .card:hover {
             border-color: var(--accent);
+            transform: translateY(-5px);
         }
 
         .timeline-item {
@@ -170,7 +226,6 @@
             padding-left: 2rem;
             margin-bottom: 3.5rem;
             position: relative;
-            opacity: 0;
         }
 
         .timeline-item::after {
@@ -185,20 +240,19 @@
             box-shadow: 0 0 10px var(--accent);
         }
 
-        /* ── FORM ── */
+        /* ── CONTACT FORM ── */
         .contact-form-container {
             background: var(--navy-light);
             border: 1px solid var(--border);
             padding: 2.5rem;
             border-radius: 12px;
-            opacity: 0;
         }
 
         .form-control {
             width: 100%;
             background: var(--navy);
             border: 1px solid var(--border);
-            padding: 0.9rem;
+            padding: 1rem;
             color: var(--text);
             font-family: var(--sans);
             border-radius: 4px;
@@ -215,6 +269,12 @@
             cursor: pointer;
             border-radius: 4px;
             width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #fff;
+            transform: scale(1.02);
         }
 
         @media (max-width: 1024px) {
@@ -256,30 +316,30 @@
 
     <section id="hero">
         <div class="hero-content">
-            <p id="hero-eyebrow" style="font-family: var(--mono); color: var(--gold); letter-spacing: 2px; opacity: 0;">
-                // TECHNICAL SOLUTION ASSOCIATE @ EXPEDIA GROUP</p>
-            <h1 id="hero-title">Dipesh<br><em>Suthar</em></h1>
-            <p id="hero-desc" style="color: var(--text-muted); max-width: 550px; margin-bottom: 2rem; opacity: 0;">
+            <p style="font-family: var(--mono); color: var(--gold); letter-spacing: 2px;">// TECHNICAL SOLUTION
+                ASSOCIATE @ EXPEDIA GROUP</p>
+            <h1>Dipesh<br><em>Suthar</em></h1>
+            <p class="hero-desc">
                 Informatics student & Master Data Specialist based in Prague. Focused on SAP S/4HANA integration and
                 scalable technical solutions.
             </p>
-            <div id="hero-btn" style="opacity: 0;">
+            <div class="cta-area">
                 <a href="#contact"
-                    style="display:inline-block; padding: 1rem 2rem; background: var(--accent); color: var(--navy); text-decoration: none; font-family: var(--mono); font-weight: bold; border-radius: 4px;">Hire
+                    style="display:inline-block; padding: 1rem 2.5rem; background: var(--accent); color: var(--navy); text-decoration: none; font-family: var(--mono); font-weight: bold; border-radius: 4px;">Hire
                     Me</a>
             </div>
         </div>
-        <div class="photo-card" id="hero-image">
-            <img src="img/img_profile.png" alt="Dipesh Suthar Portfolio Headshot">
+        <div class="photo-card">
+            <img src="img/img_profile.png" alt="Dipesh Suthar Profile Photo">
         </div>
     </section>
 
     <div class="wrapper" id="about">
-        <span class="section-label">01. Profile</span>
+        <span class="section-label reveal">01. About</span>
         <div class="grid-2">
-            <div class="card">
+            <div class="card reveal">
                 <h2 style="font-family: var(--serif); font-size: 2.2rem; margin-bottom: 1.5rem;">Analytical
-                    <em>Mindset</em></h2>
+                    <em>Expertise</em></h2>
                 <p style="color: var(--text-muted);">
                     Informatics student with expertise in customer master data management, data analysis, IT systems,
                     and SAP S/4HANA integration. Skilled in data cleansing, aggregation, and error analysis, with
@@ -287,8 +347,8 @@
                     skills as a Master Data Specialist.
                 </p>
             </div>
-            <div class="card">
-                <p style="font-family: var(--mono); color: var(--gold); margin-bottom: 1rem;">Primary Arsenal</p>
+            <div class="card reveal">
+                <p style="font-family: var(--mono); color: var(--gold); margin-bottom: 1rem;">Primary Stack</p>
                 <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
                     <span
                         style="padding: 0.5rem 1rem; border: 1px solid var(--border); font-size: 0.75rem; font-family: var(--mono);">SAP
@@ -297,7 +357,7 @@
                         style="padding: 0.5rem 1rem; border: 1px solid var(--border); font-size: 0.75rem; font-family: var(--mono);">ServiceNow</span>
                     <span
                         style="padding: 0.5rem 1rem; border: 1px solid var(--border); font-size: 0.75rem; font-family: var(--mono);">API
-                        Management</span>
+                        Integration</span>
                     <span
                         style="padding: 0.5rem 1rem; border: 1px solid var(--border); font-size: 0.75rem; font-family: var(--mono);">Python</span>
                 </div>
@@ -306,42 +366,42 @@
     </div>
 
     <div class="wrapper" id="experience">
-        <span class="section-label">02. Career</span>
+        <span class="section-label reveal">02. Work Experience</span>
         <div class="timeline">
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <p style="font-family: var(--mono); color: var(--gold); font-size: 0.75rem;">MAR 2025 — PRESENT</p>
                 <h3 style="font-size: 1.5rem;">Technical Solution Associate</h3>
                 <p style="color: var(--accent); font-family: var(--mono); font-size: 0.85rem;">Expedia Group | Prague,
                     Czechia</p>
                 <ul style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem; padding-left: 1.2rem;">
+                    <li style="margin-bottom: 0.5rem;">Collaborate with internal teams and external partners to
+                        implement technical travel solutions.</li>
                     <li style="margin-bottom: 0.5rem;">Troubleshoot and resolve technical issues related to APIs, system
                         integrations, and partner connectivity.</li>
-                    <li style="margin-bottom: 0.5rem;">Assist in onboarding new partners by providing technical
-                        guidance.</li>
                     <li>Analyze technical requirements and translate business needs into scalable solutions.</li>
                 </ul>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <p style="font-family: var(--mono); color: var(--gold); font-size: 0.75rem;">JUN 2022 — MAR 2025</p>
                 <h3 style="font-size: 1.5rem;">Night Receptionist / Auditor</h3>
                 <p style="color: var(--accent); font-family: var(--mono); font-size: 0.85rem;">Hotel Emblem Prague</p>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Efficiently managed guest
-                    audits and corporate executive check-ins using the Mews system.</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Managed corporate check-ins
+                    using Mews system and professionally resolved guest inquiries.</p>
             </div>
         </div>
     </div>
 
     <div class="wrapper" id="projects">
-        <span class="section-label">03. Projects</span>
+        <span class="section-label reveal">03. Selected Projects</span>
         <div class="grid-2">
-            <div class="card">
+            <div class="card reveal">
                 <h4>Find My Salon Website</h4>
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">A PHP-driven platform for
-                    appointment booking, filtering packages, and online payments.</p>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">PHP-based platform for salon
+                    discovery, appointment booking, and automated payments.</p>
                 <p style="font-family: var(--mono); color: var(--gold); font-size: 0.65rem; margin-top: 1rem;">PHP • SQL
-                    • JAVASCRIPT</p>
+                    • JS</p>
             </div>
-            <div class="card">
+            <div class="card reveal">
                 <h4>Cafe Billing System</h4>
                 <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">C# WinForms application for
                     real-time order tracking and receipt generation.</p>
@@ -352,37 +412,39 @@
     </div>
 
     <div class="wrapper" id="certificates">
-        <span class="section-label">04. Certificates</span>
+        <span class="section-label reveal">04. Certificates</span>
         <div class="grid-2">
-            <div class="card">
+            <div class="card reveal">
                 <p style="font-family: var(--mono); color: var(--gold); font-size: 0.65rem;">SERVICENOW</p>
-                <h4 style="margin-bottom: 0.5rem;">Public Learning Resume</h4>
+                <h4 style="margin: 0.5rem 0;">Public Learning Profile</h4>
                 <a href="https://nowlearning.servicenow.com/lxp/en/pages/nl-public-resume?id=nl_public&user=dipeshsuth246379"
-                    target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.8rem;">View
-                    Learning History ↗</a>
+                    target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.8rem;">Official
+                    Resume ↗</a>
             </div>
-            <div class="card">
+            <div class="card reveal">
                 <p style="font-family: var(--mono); color: var(--gold); font-size: 0.65rem;">MICROSOFT LEARN</p>
                 <h4>Fundamental AI Concepts</h4>
-                <p style="color: var(--text-muted); font-size: 0.85rem;">Focused on machine learning, neural networks,
-                    and NLP fundamentals.</p>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Neural networks, Machine Learning, and NLP core
+                    concepts.</p>
             </div>
         </div>
     </div>
 
-    <div class="wrapper" id="contact">
-        <span class="section-label">05. Connect</span>
+    <div class="wrapper" id="contact" style="background: var(--navy-light); border-top: 1px solid var(--border);">
+        <span class="section-label reveal">05. Contact</span>
         <div class="grid-2">
-            <div>
-                <h2 style="font-family: var(--serif); font-size: 2.5rem; margin-bottom: 2rem;">Message <em>Me</em></h2>
-                <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="reveal">
+                <h2 style="font-family: var(--serif); font-size: 2.5rem; margin-bottom: 2rem;">Let's <em>Connect</em>
+                </h2>
+                <div style="display: flex; flex-direction: column; gap: 1.2rem;">
                     <a href="https://www.linkedin.com/in/dipesh-suthar-5710a313b/" target="_blank"
                         style="color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: 0.85rem;">LinkedIn
                         Profile ↗</a>
                     <p style="color: var(--text-muted); font-size: 0.85rem;">Email: dipeshsuthar2653@gmail.com</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Location: Prague, Czechia</p>
                 </div>
             </div>
-            <div class="contact-form-container">
+            <div class="contact-form-container reveal">
                 <form action="https://formspree.io/f/dipeshsuthar2653@gmail.com" method="POST">
                     <input type="text" name="name" class="form-control" placeholder="Full Name" required>
                     <input type="email" name="email" class="form-control" placeholder="Email Address" required>
@@ -395,32 +457,16 @@
     </div>
 
     <script>
-        const { animate, scroll, spring } = Motion;
+        // Simple Intersection Observer for scroll reveal (replaces external Framer libraries)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
 
-        // 1. Hero Entrance Logic
-        const entranceSequence = () => {
-            animate("#hero-eyebrow", { opacity: 1, y: [20, 0] }, { duration: 0.8 });
-            animate("#hero-title", { opacity: 1, y: [30, 0] }, { duration: 0.8, delay: 0.2, easing: spring() });
-            animate("#hero-desc", { opacity: 1, y: [20, 0] }, { duration: 0.8, delay: 0.4 });
-            animate("#hero-btn", { opacity: 1, scale: [0.9, 1] }, { duration: 0.5, delay: 0.6, easing: spring() });
-            animate("#hero-image", { opacity: 1, x: [40, 0], rotate: [2, 0] }, { duration: 1, delay: 0.4, easing: spring() });
-        };
-
-        window.onload = entranceSequence;
-
-        // 2. Scroll-Linked Framer Motion Reveal
-        document.querySelectorAll(".card, .timeline-item, .section-label, .contact-form-container").forEach((el) => {
-            scroll(
-                animate(el, { opacity: [0, 1], y: [40, 0] }, { duration: 0.8, easing: "ease-out" }),
-                { target: el, offset: ["start end", "end start"] }
-            );
-        });
-
-        // 3. Hover Interactive Motion
-        document.querySelectorAll(".card").forEach(card => {
-            card.addEventListener("mouseenter", () => animate(card, { scale: 1.02, borderColor: "#4f8ef7" }, { easing: spring() }));
-            card.addEventListener("mouseleave", () => animate(card, { scale: 1, borderColor: "rgba(79, 142, 247, 0.15)" }, { easing: spring() }));
-        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 
