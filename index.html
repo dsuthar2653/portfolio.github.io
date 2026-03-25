@@ -61,6 +61,7 @@
             opacity: 0.5;
         }
 
+        /* ── NAV ── */
         nav {
             position: fixed;
             top: 0;
@@ -113,6 +114,7 @@
             transition: background 0.2s, color 0.2s !important;
         }
 
+        /* ── HERO ── */
         #hero {
             min-height: 100vh;
             display: grid;
@@ -189,23 +191,6 @@
             margin-bottom: 2.5rem;
         }
 
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--accent);
-            color: var(--navy);
-            font-family: var(--sans);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 0.9rem 2rem;
-            border-radius: 3px;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
         .hero-stats {
             display: flex;
             gap: 2.5rem;
@@ -231,6 +216,7 @@
             text-transform: uppercase;
         }
 
+        /* ── SHARED ── */
         .wrapper {
             max-width: 1200px;
             margin: 0 auto;
@@ -274,6 +260,7 @@
             color: var(--accent);
         }
 
+        /* ── ABOUT ── */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -293,6 +280,7 @@
             display: inline-block;
         }
 
+        /* ── PROJECTS ── */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -313,6 +301,7 @@
             border-color: var(--accent);
         }
 
+        /* ── EXPERIENCE ── */
         .timeline {
             position: relative;
             margin-top: 3rem;
@@ -335,6 +324,7 @@
         .exp-role {
             font-family: var(--serif);
             font-size: 1.15rem;
+            color: var(--text);
         }
 
         .exp-company {
@@ -344,6 +334,103 @@
             margin-bottom: 0.5rem;
         }
 
+        .exp-bullets {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .exp-bullets li {
+            font-size: 0.87rem;
+            color: var(--text-muted);
+            padding-left: 1.2rem;
+            position: relative;
+            margin-bottom: 0.35rem;
+        }
+
+        .exp-bullets li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* ── CONTACT ── */
+        .contact-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 5rem 3rem;
+            border-top: 0.5px solid var(--border);
+        }
+
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--card-bg);
+            border: 0.5px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--border-bright);
+            transform: translateX(4px);
+        }
+
+        .contact-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .icon-linkedin {
+            background: rgba(10, 102, 194, 0.15);
+            border: 0.5px solid rgba(10, 102, 194, 0.25);
+        }
+
+        .icon-github {
+            background: rgba(255, 255, 255, 0.05);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .icon-email {
+            background: var(--accent-glow);
+            border: 0.5px solid var(--border-bright);
+        }
+
+        .contact-card-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .contact-card-sub {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--text-dim);
+        }
+
+        /* ── REVEAL ANIMATION ── */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -366,14 +453,18 @@
 
             #hero {
                 grid-template-columns: 1fr;
-                padding: 7rem 1.5rem;
+                padding: 7rem 1.5rem 4rem;
             }
 
-            .wrapper {
-                padding: 4rem 1.5rem;
+            .wrapper,
+            .contact-wrap {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
             }
 
-            .projects-grid {
+            .projects-grid,
+            .about-grid,
+            .contact-inner {
                 grid-template-columns: 1fr;
             }
         }
@@ -404,12 +495,12 @@
             <p class="hero-role">// Informatics Student & Software Developer</p>
             <p class="hero-bio">
                 Building efficient software solutions with a focus on maintainable code and system integrity. Currently
-                completing my Bachelor in Informatics in Prague.
+                completing my Bachelor in Informatics at Czech University of Life Sciences.
             </p>
             <div class="hero-stats">
                 <div>
                     <div class="stat-num">3<span>+</span></div>
-                    <div class="stat-label">Projects</div>
+                    <div class="stat-label">Key Projects</div>
                 </div>
                 <div>
                     <div class="stat-num">2</div>
@@ -428,7 +519,7 @@
                 <p>I am a detail-oriented developer with experience in PHP development and software testing. I thrive in
                     collaborative environments, contributing to architectural decisions and back-end efficiency.</p>
                 <br>
-                <p><strong>Languages:</strong> English (B2), Czech (A1)</p>
+                <p><strong>Spoken Languages:</strong> English (B2), Czech (A1)</p>
             </div>
             <div class="reveal">
                 <span class="skill-pill">Java</span>
@@ -438,36 +529,44 @@
                 <span class="skill-pill">MS SQL</span>
                 <span class="skill-pill">HTML/CSS</span>
                 <span class="skill-pill">ASP.NET</span>
+                <span class="skill-pill">Visual Studio</span>
+                <span class="skill-pill">Office 365</span>
             </div>
         </div>
     </div>
 
     <hr class="section-sep">
     <div class="wrapper" id="experience">
-        <p class="section-label reveal">02 — Experience</p>
+        <p class="section-label reveal">02 — Work Experience</p>
         <div class="timeline">
             <div class="exp-card reveal">
                 <div class="exp-inner">
                     <p class="exp-role">Night Receptionist / Auditor</p>
                     <p class="exp-company">Hotel Emblem Prague | Jun 2022 – Present</p>
-                    <p>Managed guest inquiries and corporate check-ins using the Mews system, ensuring high service
-                        standards during night audits.</p>
+                    <ul class="exp-bullets">
+                        <li>Managed corporate executive check-ins using Mews system.</li>
+                        <li>Professionally handled guest inquiries and requests.</li>
+                    </ul>
                 </div>
             </div>
             <div class="exp-card reveal">
                 <div class="exp-inner">
                     <p class="exp-role">Software Intern</p>
                     <p class="exp-company">Bluescape | Sep 2021 – Jan 2022</p>
-                    <p>Conducted prototype testing and worked with senior programmers on architectural decisions using
-                        JUSTIN MIND.</p>
+                    <ul class="exp-bullets">
+                        <li>Managed software prototype testing and Google Play Store listings.</li>
+                        <li>Collaborated with senior programmers on architectural decisions.</li>
+                    </ul>
                 </div>
             </div>
             <div class="exp-card reveal">
                 <div class="exp-inner">
                     <p class="exp-role">PHP Developer (Apprenticeship)</p>
                     <p class="exp-company">Bright Infosolutions | Jun 2018 – Jun 2019</p>
-                    <p>Developed responsive websites and maintained documentation including user guides and release
-                        notes.</p>
+                    <ul class="exp-bullets">
+                        <li>Designed and developed responsive websites for mobile and desktop.</li>
+                        <li>Developed and maintained user guides and technical documentation.</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -479,15 +578,18 @@
         <div class="projects-grid">
             <div class="project-card reveal">
                 <h3>Find My Salon</h3>
-                <p>PHP website for booking appointments, filtering packages, and online payments.</p>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.5rem;">PHP website for searching
+                    salons, booking appointments, and online payments.</p>
             </div>
             <div class="project-card reveal">
                 <h3>BlackJack Game</h3>
-                <p>Python-based text game simulating casino card mechanics with file-based result logging.</p>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.5rem;">Text-based Python card game
+                    simulation with result file generation.</p>
             </div>
             <div class="project-card reveal">
                 <h3>Cafe Billing System</h3>
-                <p>C# WinForms application for managing orders and generating receipts.</p>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.5rem;">C# WinForms application for
+                    order management and receipt generation.</p>
             </div>
         </div>
     </div>
@@ -497,16 +599,19 @@
         <p class="section-label reveal">04 — Certificates</p>
         <div class="about-grid">
             <div class="reveal">
-                <h3>Microsoft Learn</h3>
-                <p>Fundamental AI Concepts (Feb 2024)</p>
+                <p class="exp-company">Microsoft Learn</p>
+                <h3>Fundamental AI Concepts</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Feb 2024</p>
             </div>
             <div class="reveal">
-                <h3>Simplilearn</h3>
-                <p>Introduction to Data Analytics (Aug 2023)</p>
+                <p class="exp-company">Simplilearn</p>
+                <h3>Intro to Data Analytics</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Aug 2023</p>
             </div>
             <div class="reveal">
-                <h3>Vodafone Global</h3>
-                <p>Virtual IT Internship (Jul 2022)</p>
+                <p class="exp-company">Vodafone Global</p>
+                <h3>Virtual IT Internship</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Jul 2022</p>
             </div>
         </div>
     </div>
@@ -523,14 +628,49 @@
             </div>
             <div class="exp-card reveal">
                 <div class="exp-inner">
-                    <p class="exp-role">Diploma in Information Technology</p>
+                    <p class="exp-role">Diploma in IT</p>
                     <p class="exp-company">R. C. Technical Institute | GPA: 8.22</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="wrapper" style="text-align: center; color: var(--text-dim); font-size: 0.7rem;">
+    <div class="contact-wrap" id="contact">
+        <div class="section-label reveal">06 — Contact</div>
+        <div class="contact-inner">
+            <div class="contact-left reveal">
+                <h2>Let's <em>connect</em></h2>
+                <p>Open to software development and internship roles. Feel free to reach out via the platforms below.
+                </p>
+                <div class="contact-cards">
+                    <a href="https://www.linkedin.com/in/dipesh-suthar-5710a313b" target="_blank" class="contact-card">
+                        <div class="contact-card-icon icon-linkedin">💼</div>
+                        <div>
+                            <div class="contact-card-label">LinkedIn</div>
+                            <div class="contact-card-sub">Dipesh Suthar</div>
+                        </div>
+                    </a>
+                    <a href="https://github.com/yourusername" target="_blank" class="contact-card">
+                        <div class="contact-card-icon icon-github">🐙</div>
+                        <div>
+                            <div class="contact-card-label">GitHub</div>
+                            <div class="contact-card-sub">github.com/yourusername</div>
+                        </div>
+                    </a>
+                    <a href="mailto:dipeshsuthar2653@gmail.com" class="contact-card">
+                        <div class="contact-card-icon icon-email">✉️</div>
+                        <div>
+                            <div class="contact-card-label">Email</div>
+                            <div class="contact-card-sub">dipeshsuthar2653@gmail.com</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper"
+        style="text-align: center; color: var(--text-dim); font-size: 0.7rem; border-top: 0.5px solid var(--border);">
         <p>© 2026 Dipesh Suthar | Prague, Czechia</p>
     </div>
 
