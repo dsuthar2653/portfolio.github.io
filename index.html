@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dipesh Suthar — Software Developer</title>
+    <title>Dipesh Suthar — Master Data Specialist & Technical Solution Associate</title>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700&display=swap"
         rel="stylesheet" />
     <style>
+        /* ── RESET & VARIABLES ── */
         *,
         *::before,
         *::after {
@@ -19,23 +20,16 @@
 
         :root {
             --navy: #080d1a;
-            --navy-2: #0d1526;
-            --navy-3: #162038;
-            --navy-4: #1e2d4d;
+            --navy-light: #0d1526;
             --accent: #4f8ef7;
-            --accent-glow: rgba(79, 142, 247, 0.18);
+            --accent-glow: rgba(79, 142, 247, 0.25);
             --gold: #c9a84c;
-            --gold-dim: rgba(201, 168, 76, 0.15);
             --text: #e8eaf0;
             --text-muted: #8895b3;
-            --text-dim: #3d4f72;
-            --border: rgba(79, 142, 247, 0.12);
-            --border-bright: rgba(79, 142, 247, 0.3);
+            --border: rgba(79, 142, 247, 0.15);
             --sans: 'Syne', sans-serif;
             --serif: 'DM Serif Display', serif;
             --mono: 'DM Mono', monospace;
-            --card-bg: #0d1526;
-            --card-hover: #121d35;
         }
 
         html {
@@ -46,59 +40,93 @@
             background: var(--navy);
             color: var(--text);
             font-family: var(--sans);
-            font-size: 16px;
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.5;
+        /* ── ANIMATIONS ── */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.17, 0.55, 0.55, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0) !important;
+        }
+
+        .slide-up {
+            transform: translateY(50px);
+        }
+
+        .slide-left {
+            transform: translateX(-50px);
         }
 
         /* ── NAVIGATION ── */
         nav {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
+            width: 100%;
+            z-index: 1000;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 1.1rem 5rem;
-            background: rgba(8, 13, 26, 0.88);
-            backdrop-filter: blur(20px);
-            border-bottom: 0.5px solid var(--border);
-        }
-
-        .nav-logo {
-            font-family: var(--serif);
-            font-size: 1.3rem;
-            color: var(--accent);
-            text-decoration: none;
+            align-items: center;
+            padding: 1.5rem 5rem;
+            background: rgba(8, 13, 26, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
-            align-items: center;
         }
 
         .nav-links a {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--text-muted);
             text-decoration: none;
-            transition: color 0.2s;
+            color: var(--text-muted);
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
@@ -106,345 +134,189 @@
         }
 
         .nav-cta {
-            background: transparent !important;
-            border: 1px solid var(--border-bright) !important;
+            border: 1px solid var(--accent);
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
             color: var(--accent) !important;
-            padding: 0.45rem 1rem !important;
-            border-radius: 3px !important;
-            transition: background 0.2s, color 0.2s !important;
         }
 
         /* ── HERO ── */
         #hero {
-            min-height: 100vh;
+            height: 100vh;
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
+            grid-template-columns: 1.2fr 0.8fr;
             align-items: center;
-            gap: 5rem;
-            padding: 9rem 5rem 5rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 0 10%;
             position: relative;
+            gap: 2rem;
         }
 
-        .hero-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            color: var(--accent);
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            margin-bottom: 1.2rem;
-            background: var(--accent-glow);
-            border: 0.5px solid var(--border-bright);
-            padding: 0.35rem 0.85rem;
-            border-radius: 2px;
+        .hero-content {
+            z-index: 2;
         }
 
-        .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #4ade80;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.4;
-            }
+        .hero-bg-glow {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            animation: pulseGlow 5s infinite;
         }
 
         h1 {
             font-family: var(--serif);
-            font-size: clamp(3rem, 5vw, 4.8rem);
-            line-height: 1.08;
-            margin-bottom: 0.5rem;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
         }
 
         h1 em {
-            font-style: italic;
             color: var(--accent);
+            font-style: italic;
         }
 
-        .hero-role {
+        .tagline {
             font-family: var(--mono);
-            font-size: 0.85rem;
             color: var(--gold);
-            letter-spacing: 0.08em;
-            margin-bottom: 1.6rem;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .hero-bio {
-            font-size: 1rem;
-            color: var(--text-muted);
-            line-height: 1.9;
-            max-width: 460px;
-            margin-bottom: 2.5rem;
-        }
-
-        .hero-stats {
+        /* Photo Placeholder Styling */
+        .hero-image-area {
+            position: relative;
             display: flex;
-            gap: 2.5rem;
-            padding-top: 2rem;
-            border-top: 0.5px solid var(--border);
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .stat-num {
-            font-family: var(--serif);
-            font-size: 2.2rem;
-            color: var(--text);
+        .photo-card {
+            width: 320px;
+            height: 400px;
+            background: var(--navy-light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
-        .stat-num span {
-            font-style: italic;
-            color: var(--accent);
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
         }
 
-        .stat-label {
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #101a30, #080d1a);
+        }
+
+        .photo-placeholder span {
             font-family: var(--mono);
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             color: var(--text-dim);
             text-transform: uppercase;
-        }
-
-        /* ── SHARED ── */
-        .wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 6rem 5rem;
-        }
-
-        .section-sep {
-            border: none;
-            border-top: 0.5px solid var(--border);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            color: var(--accent);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 0.8rem;
-        }
-
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 0.5px;
-            background: var(--border);
-        }
-
-        h2 {
-            font-family: var(--serif);
-            font-size: clamp(2rem, 3.5vw, 2.8rem);
-            margin-bottom: 0.5rem;
-        }
-
-        h2 em {
-            font-style: italic;
-            color: var(--accent);
-        }
-
-        /* ── ABOUT ── */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            margin-top: 3rem;
-        }
-
-        .skill-pill {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            background: var(--navy-2);
-            border: 0.5px solid var(--border);
-            padding: 0.35rem 0.75rem;
-            border-radius: 2px;
-            margin: 0.2rem;
-            display: inline-block;
-        }
-
-        /* ── PROJECTS ── */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 0.5px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.25s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent);
-        }
-
-        /* ── EXPERIENCE ── */
-        .timeline {
-            position: relative;
-            margin-top: 3rem;
-        }
-
-        .exp-card {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 2rem;
-            padding-bottom: 2.5rem;
-        }
-
-        .exp-inner {
-            background: var(--card-bg);
-            border: 0.5px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-
-        .exp-role {
-            font-family: var(--serif);
-            font-size: 1.15rem;
-            color: var(--text);
-        }
-
-        .exp-company {
-            color: var(--gold);
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .exp-bullets {
-            list-style: none;
             margin-top: 1rem;
         }
 
-        .exp-bullets li {
-            font-size: 0.87rem;
-            color: var(--text-muted);
-            padding-left: 1.2rem;
-            position: relative;
-            margin-bottom: 0.35rem;
-        }
-
-        .exp-bullets li::before {
-            content: '›';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        /* ── CONTACT ── */
-        .contact-wrap {
-            max-width: 1200px;
+        /* ── CONTENT BLOCKS ── */
+        .wrapper {
+            padding: 8rem 10%;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 5rem 5rem 3rem;
-            border-top: 0.5px solid var(--border);
         }
 
-        .contact-inner {
+        .grid-2 {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 5rem;
-            align-items: start;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
         }
 
-        .contact-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-top: 2rem;
+        .card {
+            background: var(--navy-light);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: 0.4s;
+            position: relative;
         }
 
-        .contact-card {
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(79, 142, 247, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            margin: 0.3rem;
+            transition: 0.3s;
+        }
+
+        .timeline-item {
+            border-left: 2px solid var(--border);
+            padding-left: 2rem;
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-link {
             display: flex;
             align-items: center;
             gap: 1rem;
-            background: var(--card-bg);
-            border: 0.5px solid var(--border);
+            padding: 1.5rem;
+            background: var(--navy-light);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 1rem 1.25rem;
             text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .contact-card:hover {
-            border-color: var(--border-bright);
-            transform: translateX(4px);
-        }
-
-        .contact-card-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-        }
-
-        .icon-linkedin {
-            background: rgba(10, 102, 194, 0.15);
-            border: 0.5px solid rgba(10, 102, 194, 0.25);
-        }
-
-        .icon-github {
-            background: rgba(255, 255, 255, 0.05);
-            border: 0.5px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .icon-email {
-            background: var(--accent-glow);
-            border: 0.5px solid var(--border-bright);
-        }
-
-        .contact-card-label {
-            font-size: 0.85rem;
-            font-weight: 500;
             color: var(--text);
+            transition: 0.3s;
         }
 
-        .contact-card-sub {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--text-dim);
+        .contact-link:hover {
+            background: var(--accent-glow);
+            transform: translateX(5px);
         }
 
-        /* ── REVEAL ANIMATION ── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 0.6s ease-out;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
             nav {
-                padding: 1rem 1.5rem;
+                padding: 1rem 2rem;
             }
 
             .nav-links {
@@ -453,18 +325,17 @@
 
             #hero {
                 grid-template-columns: 1fr;
-                padding: 7rem 1.5rem 4rem;
+                padding-top: 120px;
+                height: auto;
+                text-align: center;
             }
 
-            .wrapper,
-            .contact-wrap {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
+            .hero-image-area {
+                order: -1;
+                margin-bottom: 3rem;
             }
 
-            .projects-grid,
-            .about-grid,
-            .contact-inner {
+            .grid-2 {
                 grid-template-columns: 1fr;
             }
         }
@@ -474,7 +345,8 @@
 <body>
 
     <nav>
-        <a href="#hero" class="nav-logo">DS.</a>
+        <a href="#" class="nav-logo"
+            style="font-family: var(--serif); font-size: 1.5rem; color: var(--accent); text-decoration: none;">DS.</a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Work Experience</a></li>
@@ -486,196 +358,173 @@
     </nav>
 
     <section id="hero">
-        <div>
-            <div class="hero-eyebrow">
-                <span class="dot"></span>
-                Available in Prague
-            </div>
-            <h1>Dipesh<br><em>Suthar</em></h1>
-            <p class="hero-role">// Informatics Student & Software Developer</p>
-            <p class="hero-bio">
-                Building efficient software solutions with a focus on maintainable code and system integrity. Currently
-                completing my Bachelor in Informatics at Czech University of Life Sciences.
+        <div class="hero-bg-glow"></div>
+        <div class="hero-content">
+            <p class="tagline reveal slide-up" style="transition-delay: 0.1s;">// Technical Solution Associate @ Expedia
+                Group</p>
+            <h1 class="reveal slide-up" style="transition-delay: 0.3s;">Dipesh<br><em>Suthar</em></h1>
+            <p class="reveal slide-up"
+                style="max-width: 600px; color: var(--text-muted); margin-bottom: 2.5rem; transition-delay: 0.5s;">
+                Specializing in Master Data Management and technical integrations, ensuring data availability and system
+                integrity at scale.
             </p>
-            <div class="hero-stats">
-                <div>
-                    <div class="stat-num">3<span>+</span></div>
-                    <div class="stat-label">Key Projects</div>
-                </div>
-                <div>
-                    <div class="stat-num">2</div>
-                    <div class="stat-label">Languages</div>
+            <div class="reveal slide-up" style="transition-delay: 0.7s;">
+                <a href="#experience" class="skill-tag"
+                    style="padding: 1rem 2.5rem; background: var(--accent); color: var(--navy); font-weight: bold; border: none; text-decoration: none;">View
+                    Experience</a>
+            </div>
+        </div>
+
+        <div class="hero-image-area reveal slide-up" style="transition-delay: 0.5s;">
+            <div class="photo-card">
+                <div class="photo-placeholder">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Add your image</span>
                 </div>
             </div>
         </div>
     </section>
 
     <div class="wrapper" id="about">
-        <p class="section-label reveal">01 — About</p>
-        <h2 class="reveal">Tech stack & <em>profile</em></h2>
-        <div class="about-grid">
-            <div class="reveal">
-                <p>I am a detail-oriented developer with experience in PHP development and software testing. I thrive in
-                    collaborative environments, contributing to architectural decisions and back-end efficiency.</p>
-                <br>
-                <p><strong>Spoken Languages:</strong> English (B2), Czech (A1)</p>
+        <div class="grid-2">
+            <div class="reveal slide-left">
+                <h2 style="font-family: var(--serif); font-size: 2.8rem; margin-bottom: 1.5rem;">The <em>Expertise</em>
+                </h2>
+                <p style="color: var(--text-muted); margin-bottom: 1.2rem;">
+                    Informatics student with expertise in customer master data management, data analysis, IT systems,
+                    and SAP S/4HANA integration.
+                </p>
+                <p style="color: var(--text-muted); margin-bottom: 1.2rem;">
+                    Skilled in data cleansing, aggregation, and error analysis, with hands-on experience in data
+                    monitoring and validation. I focus on optimizing systems to ensure data quality and availability.
+                </p>
+                <p style="color: var(--text-muted);">
+                    Seeking to leverage analytical and technical skills as a <strong>Master Data Specialist</strong>.
+                </p>
             </div>
-            <div class="reveal">
-                <span class="skill-pill">Java</span>
-                <span class="skill-pill">Python</span>
-                <span class="skill-pill">C#</span>
-                <span class="skill-pill">PHP</span>
-                <span class="skill-pill">MS SQL</span>
-                <span class="skill-pill">HTML/CSS</span>
-                <span class="skill-pill">ASP.NET</span>
-                <span class="skill-pill">Visual Studio</span>
-                <span class="skill-pill">Office 365</span>
+            <div class="reveal" style="transition-delay: 0.3s;">
+                <h3
+                    style="font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; letter-spacing: 1px;">
+                    Core Competencies</h3>
+                <div class="skills-container">
+                    <span class="skill-tag">SAP S/4HANA</span> <span class="skill-tag">Data Cleansing</span>
+                    <span class="skill-tag">ServiceNow</span> <span class="skill-tag">API Integration</span>
+                    <span class="skill-tag">Data Validation</span> <span class="skill-tag">Error Analysis</span>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="wrapper" id="experience">
-        <p class="section-label reveal">02 — Work Experience</p>
+        <h2 class="reveal slide-up" style="font-family: var(--serif); font-size: 2.8rem; margin-bottom: 4rem;">Career
+            <em>Path</em></h2>
         <div class="timeline">
-            <div class="exp-card reveal">
-                <div class="exp-inner">
-                    <p class="exp-role">Night Receptionist / Auditor</p>
-                    <p class="exp-company">Hotel Emblem Prague | Jun 2022 – Present</p>
-                    <ul class="exp-bullets">
-                        <li>Managed corporate executive check-ins using Mews system.</li>
-                        <li>Professionally handled guest inquiries and requests.</li>
-                    </ul>
-                </div>
+            <div class="timeline-item reveal slide-up">
+                <p style="font-family: var(--mono); color: var(--gold); font-size: 0.8rem;">MAR 2025 — PRESENT</p>
+                <h3 style="font-size: 1.5rem;">Technical Solution Associate</h3>
+                <p style="color: var(--accent); margin-bottom: 1rem;">Expedia Group · Full-time · Prague</p>
+                <ul style="color: var(--text-muted); padding-left: 1.2rem; font-size: 0.9rem;">
+                    <li style="margin-bottom: 0.5rem;">Collaborate with internal teams and external partners to
+                        implement technical travel solutions.</li>
+                    <li style="margin-bottom: 0.5rem;">Troubleshoot and resolve technical issues related to APIs, system
+                        integrations, and partner connectivity.</li>
+                    <li style="margin-bottom: 0.5rem;">Assist in onboarding new partners by providing technical guidance
+                        and ensuring successful product integration.</li>
+                    <li>Analyze technical requirements and translate business needs into scalable solutions.</li>
+                </ul>
             </div>
 
             <div class="timeline-item reveal slide-up">
-                <p style="font-family: var(--mono); color: var(--gold); font-size: 0.8rem;">JUN 2022 — MAR 2025</p>
+                <p style="font-family: var(--mono); color: var(--gold); font-size: 0.8rem;">2022 — 2025</p>
                 <h3 style="font-size: 1.5rem;">Night Receptionist / Auditor</h3>
-                <p style="color: var(--accent); margin-bottom: 1rem;">Hotel Emblem Prague [cite: 3]</p>
-                <ul style="color: var(--text-muted); padding-left: 1.2rem; font-size: 0.9rem;">
-                    <li>Efficiently welcomed and checked in corporate executives using Mews system[cite: 3].</li>
-                    <li>Professionally managed guest inquiries, complaints, and requests[cite: 3].</li>
-                </ul>
-            </div>
-
-            <div class="timeline-item reveal slide-up">
-                <p style="font-family: var(--mono); color: var(--gold); font-size: 0.8rem;">SEP 2021 — JAN 2022</p>
-                <h3 style="font-size: 1.5rem;">Software Intern</h3>
-                <p style="color: var(--accent); margin-bottom: 1rem;">Bluescape [cite: 4]</p>
-                <ul style="color: var(--text-muted); padding-left: 1.2rem; font-size: 0.9rem;">
-                    <li>Managed software prototype testing and Play Store introductions[cite: 4].</li>
-                    <li>Collaborated on architectural decisions with senior programmers[cite: 4].</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="wrapper" id="projects">
-        <p class="section-label reveal">03 — Projects</p>
-        <div class="projects-grid">
-            <div class="project-card reveal">
-                <h3>Find My Salon</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.5rem;">PHP website for searching
-                    salons, booking appointments, and online payments.</p>
-            </div>
-            <div class="card reveal slide-up" style="transition-delay: 0.2s;">
-                <h3 style="margin-bottom: 1rem;">BlackJack Game [cite: 9]</h3>
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">
-                    Text-based Python card game simulation with result file generation[cite: 9].
-                </p>
-                <span class="skill-tag">Python [cite: 9]</span>
+                <p style="color: var(--accent); margin-bottom: 1rem;">Hotel Emblem Prague</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Managed guest inquiries and corporate check-ins
+                    using the Mews system, ensuring high service standards.</p>
             </div>
         </div>
     </div>
 
     <div class="wrapper" id="certificates">
-        <p class="section-label reveal">04 — Certificates</p>
-        <div class="about-grid">
-            <div class="reveal">
-                <p class="exp-company">Microsoft Learn</p>
-                <h3>Fundamental AI Concepts</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Feb 2024</p>
+        <h2 class="reveal slide-up" style="font-family: var(--serif); font-size: 2.8rem; margin-bottom: 4rem;">Technical
+            <em>Certs</em></h2>
+        <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="card reveal slide-up">
+                <p style="font-family: var(--mono); color: var(--accent); font-size: 0.7rem;">SERVICENOW</p>
+                <h4 style="margin: 0.5rem 0;">Now Learning Public Profile</h4>
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1rem;">Official verification of
+                    ServiceNow platform training and expertise.</p>
+                <a href="https://nowlearning.servicenow.com/lxp/en/pages/nl-public-resume?id=nl_public&user=dipeshsuth246379"
+                    target="_blank" class="skill-tag" style="margin:0; border:1px solid var(--accent);">Public Resume
+                    ↗</a>
             </div>
-            <div class="reveal">
-                <p class="exp-company">Simplilearn</p>
-                <h3>Intro to Data Analytics</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Aug 2023</p>
-            </div>
-            <div class="reveal">
-                <p class="exp-company">Vodafone Global</p>
-                <h3>Virtual IT Internship</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Jul 2022</p>
+            <div class="card reveal slide-up">
+                <p style="font-family: var(--mono); color: var(--accent); font-size: 0.7rem;">SIMPLILEARN</p>
+                <h4 style="margin: 0.5rem 0;">Data Analytics</h4>
+                <p style="color: var(--text-muted); font-size: 0.8rem;">Focused on data visualization, cleaning, and
+                    statistical methodology.</p>
             </div>
         </div>
     </div>
 
     <div class="wrapper" id="education">
-        <p class="section-label reveal">05 — Study Experience</p>
+        <h2 class="reveal slide-up" style="font-family: var(--serif); font-size: 2.8rem; margin-bottom: 4rem;">Academic
+            <em>History</em></h2>
         <div class="timeline">
             <div class="timeline-item reveal slide-up">
-                <h3 style="font-size: 1.5rem;">Bachelor in Informatics [cite: 3]</h3>
-                <p style="color: var(--accent);">Czech University of Life Sciences [cite: 3]</p>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Prague, Czechia | 2022 — 2025 [cite: 3]</p>
+                <h3 style="font-size: 1.5rem;">Bachelor in Informatics</h3>
+                <p style="color: var(--accent);">Czech University of Life Sciences</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Prague, Czechia | 2022 — 2025</p>
             </div>
             <div class="timeline-item reveal slide-up">
-                <h3 style="font-size: 1.5rem;">Diploma in Information Technology [cite: 3]</h3>
-                <p style="color: var(--accent);">R. C. Technical Institute [cite: 3]</p>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">GPA: 8.22 [cite: 3]</p>
+                <h3 style="font-size: 1.5rem;">Diploma in IT</h3>
+                <p style="color: var(--accent);">R. C. Technical Institute</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">GPA: 8.22</p>
             </div>
         </div>
     </div>
 
-    <div class="contact-wrap" id="contact">
-        <div class="section-label reveal">06 — Contact</div>
-        <div class="contact-inner">
-            <div class="contact-left reveal">
-                <h2>Let's <em>connect</em></h2>
-                <p>Open to software development and internship roles. Feel free to reach out via the platforms below.
-                </p>
-                <div class="contact-cards">
-                    <a href="https://www.linkedin.com/in/dipesh-suthar-5710a313b" target="_blank" class="contact-card">
-                        <div class="contact-card-icon icon-linkedin">💼</div>
-                        <div>
-                            <div class="contact-card-label">LinkedIn</div>
-                            <div class="contact-card-sub">Dipesh Suthar</div>
-                        </div>
-                    </a>
-                    <a href="https://github.com/yourusername" target="_blank" class="contact-card">
-                        <div class="contact-card-icon icon-github">🐙</div>
-                        <div>
-                            <div class="contact-card-label">GitHub</div>
-                            <div class="contact-card-sub">github.com/yourusername</div>
-                        </div>
-                    </a>
-                    <a href="mailto:dipeshsuthar2653@gmail.com" class="contact-card">
-                        <div class="contact-card-icon icon-email">✉️</div>
-                        <div>
-                            <div class="contact-card-label">Email</div>
-                            <div class="contact-card-sub">dipeshsuthar2653@gmail.com</div>
-                        </div>
-                    </a>
+    <div class="wrapper" id="contact" style="background: var(--navy-light); border-top: 1px solid var(--border);">
+        <h2 class="reveal slide-up" style="font-family: var(--serif); font-size: 2.8rem; margin-bottom: 3rem;">Let's
+            <em>Connect</em></h2>
+        <div class="contact-grid">
+            <a href="https://www.linkedin.com/in/dipesh-suthar-5710a313b/" target="_blank"
+                class="contact-link reveal slide-up">
+                <div style="font-size: 1.2rem;">💼</div>
+                <div>
+                    <div style="font-weight: bold;">LinkedIn</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">dipesh-suthar-5710a313b</div>
                 </div>
-                </a>
-            </div>
+            </a>
+            <a href="mailto:dipeshsuthar2653@gmail.com" class="contact-link reveal slide-up">
+                <div style="font-size: 1.2rem;">✉️</div>
+                <div>
+                    <div style="font-weight: bold;">Email</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">dipeshsuthar2653@gmail.com</div>
+                </div>
+            </a>
         </div>
+        <p
+            style="text-align: center; margin-top: 5rem; color: var(--text-dim); font-family: var(--mono); font-size: 0.65rem;">
+            © 2026 Dipesh Suthar | Prague, Czechia
+        </p>
+    </div>
 
-        <div class="wrapper"
-            style="text-align: center; color: var(--text-dim); font-size: 0.7rem; border-top: 0.5px solid var(--border);">
-            <p>© 2026 Dipesh Suthar | Prague, Czechia</p>
-        </div>
+    <script>
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
-        <script>
-            const observerOptions = { threshold: 0.15 };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        </script>
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 
 </html>
