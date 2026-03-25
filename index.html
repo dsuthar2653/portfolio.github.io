@@ -9,7 +9,7 @@
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700&display=swap"
         rel="stylesheet" />
     <style>
-        /* ── MODERN CSS CAPABILITIES ── */
+        /* ── CORE SETTINGS ── */
         html {
             scroll-behavior: smooth;
             interpolate-size: allow-keywords;
@@ -17,26 +17,28 @@
         }
 
         :root {
-            --navy: #080d1a;
-            --navy-light: rgba(13, 21, 38, 0.7);
+            --navy: #040811;
+            --navy-light: rgba(10, 18, 36, 0.8);
             --accent: #4f8ef7;
-            --accent-glow: rgba(79, 142, 247, 0.4);
             --gold: #c9a84c;
             --text: #e8eaf0;
             --text-muted: #8895b3;
-            --border: rgba(79, 142, 247, 0.2);
+            --border: rgba(79, 142, 247, 0.12);
             --sans: 'Syne', sans-serif;
             --serif: 'DM Serif Display', serif;
             --mono: 'DM Mono', monospace;
-            --spark: 1.8s;
-            --hue: 215;
         }
 
         body {
             background-color: var(--navy);
-            background-image: url("https://images.unsplash.com/photo-1751220170218-e57d53bd4aa8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1800");
+            /* Professional Dark Mesh Background */
+            background-image:
+                radial-gradient(at 0% 0%, rgba(79, 142, 247, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(201, 168, 76, 0.1) 0px, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
             background-attachment: fixed;
-            background-size: cover;
             color: var(--text);
             font-family: var(--sans);
             line-height: 1.6;
@@ -51,10 +53,10 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
-            opacity: 0.3;
+            opacity: 0.5;
         }
 
-        /* ── ANCHOR POSITIONED NAVIGATION ── */
+        /* ── SQUIRCLE NAVIGATION ── */
         nav {
             position: fixed;
             top: 0;
@@ -62,7 +64,7 @@
             transform: translateX(-50%);
             z-index: 1000;
             width: fit-content;
-            margin: 1.5rem auto;
+            margin: 2rem auto;
             padding: 8px;
             border-radius: 8px;
         }
@@ -76,14 +78,6 @@
 
         nav ul:has(:not(:hover)) {
             anchor-name: --test;
-        }
-
-        nav::after {
-            backdrop-filter: blur(10px);
-            background-color: hsl(215 100% 50% / 0.15);
-            z-index: -1;
-            border: 1px solid var(--border);
-            border-radius: 8px;
         }
 
         nav>ul {
@@ -100,44 +94,124 @@
             z-index: -3;
             inset: -4px;
             border-radius: 12px;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(8px);
+            background: rgba(4, 8, 17, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
         }
 
-        nav::before,
         nav::after {
             content: "";
             border-radius: 8px;
             position-anchor: --test;
             position: absolute;
-            top: calc(anchor(bottom) - 2px);
-            left: calc(anchor(left) + 0.5rem);
-            right: calc(anchor(right) + 0.5rem);
+            top: anchor(top);
+            left: anchor(left);
+            right: anchor(right);
             bottom: anchor(bottom);
+            background: rgba(255, 255, 255, 0.08);
             transition: 500ms;
             transition-timing-function: linear(0, 0.008 1.1%, 0.031 2.2%, 0.129 4.8%, 0.257 7.2%, 0.671 14.2%, 0.789 16.5%, 0.881 18.6%, 0.957 20.7%, 1.019 22.9%, 1.063 25.1%, 1.094 27.4%, 1.114 30.7%, 1.112 34.5%, 1.018 49.9%, 0.99 59.1%, 1);
         }
 
-        nav:has(a:hover)::before,
-        nav:has(a:hover)::after {
-            top: anchor(top);
-            left: anchor(left);
-            right: anchor(right);
-        }
-
         nav a {
             display: block;
-            padding: 0.8rem 1.2rem;
+            padding: 0.8rem 1.4rem;
             text-decoration: none;
             color: white;
             font-family: var(--mono);
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
         nav a:hover {
             anchor-name: --test;
+        }
+
+        /* ── LAYOUT & CARDS ── */
+        .wrapper {
+            padding: 8rem 10% 4rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: var(--mono);
+            color: var(--gold);
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+        }
+
+        .card {
+            background: var(--navy-light);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(20px);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        /* ── TIMELINE ── */
+        .timeline {
+            position: relative;
+            border-left: 2px solid var(--border);
+            padding-left: 2.5rem;
+            margin-left: 1rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: calc(-2.5rem - 7px);
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        .timeline-date {
+            font-family: var(--mono);
+            color: var(--gold);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .timeline-title {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-sub {
+            font-family: var(--mono);
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+            letter-spacing: 1px;
         }
 
         /* ── GALAXY BUTTON ── */
@@ -153,12 +227,12 @@
 
         .galaxy-button button {
             --cut: 0.1em;
-            background: hsl(var(--hue) calc(var(--active) * 100%) calc(12% - (var(--active) * 8%)));
-            font-size: 0.9rem;
+            background: hsl(215 calc(var(--active) * 100%) calc(12% - (var(--active) * 8%)));
+            font-size: 1rem;
             font-family: var(--mono);
             border: 0;
             cursor: pointer;
-            padding: 0.9em 2.5em;
+            padding: 1em 2.8em;
             display: flex;
             align-items: center;
             border-radius: 2rem;
@@ -169,123 +243,13 @@
             color: #fff;
         }
 
-        /* ── LAYOUT & SECTIONS ── */
-        .wrapper {
-            padding: 8rem 10% 4rem;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-family: var(--mono);
-            color: var(--gold);
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 2rem;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .card {
-            background: var(--navy-light);
-            border: 1px solid var(--border);
-            padding: 2.5rem;
-            border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(15px);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-        }
-
-        /* ── TIMELINE ── */
-        .timeline {
+        .text {
             position: relative;
-            border-left: 1px solid var(--border);
-            padding-left: 2rem;
-            margin-left: 1rem;
+            z-index: 2;
+            letter-spacing: 1px;
         }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 4rem;
-        }
-
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: calc(-2rem - 5px);
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        .timeline-date {
-            font-family: var(--mono);
-            color: var(--gold);
-            font-size: 0.75rem;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .timeline-title {
-            font-family: var(--serif);
-            font-size: 1.5rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .timeline-sub {
-            font-family: var(--mono);
-            color: var(--accent);
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        /* ── HERO ── */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 140px 10% 60px;
-            gap: 4rem;
-            background: linear-gradient(to bottom, transparent, var(--navy));
-        }
-
-        h1 {
-            font-family: var(--serif);
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 1;
-            margin: 1rem 0;
-        }
-
-        h1 em {
-            color: var(--accent);
-            font-style: italic;
-        }
-
-        .role-details {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            border-left: 2px solid var(--accent);
-            padding-left: 1.5rem;
-        }
-
-        /* Stars & Spark logic from previous prompt preserved below */
+        /* Galaxy Star CSS (Optimized) */
         .star {
             height: calc(var(--size) * 1px);
             aspect-ratio: 1;
@@ -371,24 +335,22 @@
 
         @media (max-width: 768px) {
             nav {
-                width: 95%;
-                top: 10px;
+                width: 90%;
+                margin: 1rem auto;
             }
 
             nav a {
-                padding: 0.5rem;
-                font-size: 0.55rem;
+                padding: 0.6rem 0.8rem;
+                font-size: 0.6rem;
+            }
+
+            .wrapper {
+                padding: 6rem 5%;
             }
 
             #hero {
                 flex-direction: column-reverse;
                 text-align: center;
-                padding-top: 180px;
-            }
-
-            .role-details {
-                border: none;
-                padding: 0;
             }
         }
     </style>
@@ -408,17 +370,23 @@
         </ul>
     </nav>
 
-    <section id="hero">
-        <div class="hero-content">
-            <span
-                style="font-family: var(--mono); color: var(--gold); letter-spacing: 3px; font-size: 0.8rem;">TECHNICAL
-                SOLUTION ASSOCIATE @ EXPEDIA GROUP</span>
-            <h1>Dipesh<br><em>Suthar</em></h1>
-            <div class="role-details">
-                <p><strong>Current Impact:</strong> Optimizing partner connectivity and troubleshooting high-concurrency
-                    API integrations for global travel supply. I specialize in bridging the gap between legacy data
-                    systems and modern cloud-native architectures.</p>
+    <section id="hero"
+        style="min-height: 100vh; display: flex; align-items: center; padding: 140px 10% 60px; gap: 4rem;">
+        <div class="hero-content" style="flex: 1;">
+            <span class="section-label" style="color: var(--accent); margin-bottom: 1rem;">TECHNICAL SOLUTION ASSOCIATE
+                @ EXPEDIA GROUP</span>
+            <h1
+                style="font-family: var(--serif); font-size: clamp(3.5rem, 8vw, 6.5rem); line-height: 0.9; margin: 1.5rem 0;">
+                Dipesh<br><em style="color: var(--accent); font-style: italic;">Suthar</em></h1>
+            <div
+                style="border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 2.5rem; max-width: 600px;">
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1rem;"><strong>Current
+                        Impact:</strong> Solving complex partner API integrations and maintaining data integrity for
+                    global travel supply chains.</p>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Bridging the gap between legacy SAP S/4HANA
+                    systems and modern cloud architectures through automation and meticulous master data strategy.</p>
             </div>
+
             <div class="galaxy-button">
                 <button onclick="window.location.href='#contact'">
                     <span class="spark"></span><span class="backdrop"></span>
@@ -426,52 +394,35 @@
                             <span class="star"></span><span class="star"></span><span class="star"></span><span
                                 class="star"></span><span class="star"></span>
                         </span></span>
-                    <span class="text">START A CONVERSATION</span>
+                    <span class="text">LET'S CONNECT</span>
                 </button>
             </div>
         </div>
         <div
-            style="width: 320px; height: 420px; border-radius: 24px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-            <img src="img/new_profile.png" alt="Dipesh Suthar" style="width: 100%; height: 100%; object-fit: cover;">
+            style="width: 340px; height: 440px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 60px rgba(0,0,0,0.8);">
+            <img src="img/new_profile.png" alt="Dipesh Suthar"
+                style="width: 100%; height: 100%; object-fit: cover; filter: brightness(1.1) contrast(1.05);">
         </div>
     </section>
 
-    <div class="wrapper" id="about">
-        <div class="grid-2">
-            <div class="card">
-                <h3 style="font-family: var(--serif); font-size: 2rem; margin-bottom: 1rem; color: var(--accent);">
-                    Technical <em>Leadership</em></h3>
-                <p style="color: var(--text-muted);">As a specialist at Expedia Group, I handle end-to-end technical
-                    solutions for internal teams and external partners. My work ensures that customer master data
-                    remains a "single source of truth."</p>
-            </div>
-            <div class="card">
-                <h3 style="font-family: var(--serif); font-size: 2rem; margin-bottom: 1rem; color: var(--gold);">Data
-                    <em>Architecture</em></h3>
-                <p style="color: var(--text-muted);">Mastery in SAP S/4HANA, ServiceNow, and API integration. I build
-                    the pipelines that allow data to flow securely between ERP systems and frontend applications.</p>
-            </div>
-        </div>
-    </div>
-
     <div class="wrapper" id="experience">
-        <span class="section-label">01. Professional Experience</span>
+        <span class="section-label">01. Work Experience</span>
         <div class="timeline">
             <div class="timeline-item">
                 <span class="timeline-date">MAR 2025 — PRESENT</span>
                 <h3 class="timeline-title">Technical Solution Associate</h3>
                 <span class="timeline-sub">Expedia Group | Prague, Czechia</span>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">Implementing technical travel solutions and
-                    troubleshooting API performance. Analyzing technical requirements to translate business needs into
-                    scalable architectures.</p>
+                <p style="color: var(--text-muted);">Collaborating with global partners to troubleshoot API integrations
+                    and travel solutions. Analyzing technical requirements to scale systems and reduce operational
+                    bottlenecks in customer data management.</p>
             </div>
             <div class="timeline-item">
                 <span class="timeline-date">JUN 2022 — MAR 2025</span>
                 <h3 class="timeline-title">Night Receptionist / Auditor</h3>
                 <span class="timeline-sub">Hotel Emblem Prague</span>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">Managed complex corporate check-ins and
-                    high-stakes auditing using the Mews hospitality system, ensuring 100% data accuracy during night
-                    cycles.</p>
+                <p style="color: var(--text-muted);">Mastered the Mews hospitality system for corporate auditing and
+                    check-in management. Developed high attention to detail and data validation skills during critical
+                    night-cycle reporting.</p>
             </div>
         </div>
     </div>
@@ -480,83 +431,98 @@
         <span class="section-label">02. Selected Projects</span>
         <div class="grid-2">
             <div class="card">
-                <h4 style="font-family: var(--serif); font-size: 1.4rem; margin-bottom: 0.5rem;">Find My Salon</h4>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">PHP-based platform for
-                    salon discovery and appointment booking with integrated secure online payments.</p>
-                <span style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent);">PHP • MySQL •
-                    JavaScript</span>
+                <h4 style="font-family: var(--serif); font-size: 1.6rem; margin-bottom: 1rem; color: var(--accent);">
+                    Find My Salon Website</h4>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">A full-stack PHP
+                    platform allowing users to discover salons, book appointments in real-time, and process secure
+                    payments.</p>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <span
+                        style="font-family: var(--mono); font-size: 0.65rem; padding: 4px 8px; border: 1px solid var(--border); color: var(--gold);">PHP</span>
+                    <span
+                        style="font-family: var(--mono); font-size: 0.65rem; padding: 4px 8px; border: 1px solid var(--border); color: var(--gold);">MySQL</span>
+                </div>
             </div>
             <div class="card">
-                <h4 style="font-family: var(--serif); font-size: 1.4rem; margin-bottom: 0.5rem;">Cafe Billing System
-                </h4>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">C# WinForms application
-                    designed for real-time order tracking, financial reporting, and automated receipt generation.</p>
-                <span style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent);">C# • .NET • SQL
-                    Server</span>
+                <h4 style="font-family: var(--serif); font-size: 1.6rem; margin-bottom: 1rem; color: var(--accent);">
+                    Cafe Billing System</h4>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">A high-performance C#
+                    WinForms application for real-time order tracking, receipt generation, and daily financial auditing.
+                </p>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <span
+                        style="font-family: var(--mono); font-size: 0.65rem; padding: 4px 8px; border: 1px solid var(--border); color: var(--gold);">C#</span>
+                    <span
+                        style="font-family: var(--mono); font-size: 0.65rem; padding: 4px 8px; border: 1px solid var(--border); color: var(--gold);">.NET</span>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="wrapper" id="certificates">
-        <span class="section-label">03. Certificates</span>
-        <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-            <div class="card" style="padding: 1.5rem;">
-                <h5 style="color: var(--gold); font-family: var(--mono); font-size: 0.7rem;">SERVICENOW</h5>
-                <p style="font-family: var(--serif); font-size: 1.1rem;">Public Learning Resume</p>
-                <a href="https://nowlearning.servicenow.com/lxp/en/pages/nl-public-resume?id=nl_public&user=dipeshsuth246379"
-                    target="_blank"
-                    style="color: var(--accent); font-size: 0.8rem; text-decoration: none; margin-top: 1rem; display: block;">Verify
-                    ↗</a>
+        <div class="grid-2" style="align-items: start;">
+            <div>
+                <span class="section-label">03. Certificates</span>
+                <div class="card" style="margin-bottom: 1.5rem;">
+                    <h5 style="color: var(--gold); font-family: var(--mono); font-size: 0.7rem; margin-bottom: 0.5rem;">
+                        SERVICENOW</h5>
+                    <p style="font-family: var(--serif); font-size: 1.2rem; margin-bottom: 1rem;">Public Learning Resume
+                    </p>
+                    <a href="https://nowlearning.servicenow.com/lxp/en/pages/nl-public-resume?id=nl_public&user=dipeshsuth246379"
+                        target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.85rem;">View
+                        Credentials ↗</a>
+                </div>
+                <div class="card">
+                    <h5 style="color: var(--gold); font-family: var(--mono); font-size: 0.7rem; margin-bottom: 0.5rem;">
+                        MICROSOFT LEARN</h5>
+                    <p style="font-family: var(--serif); font-size: 1.2rem; margin-bottom: 0.5rem;">AI Fundamentals</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Neural networks, ML, and NLP core concepts.
+                    </p>
+                </div>
             </div>
-            <div class="card" style="padding: 1.5rem;">
-                <h5 style="color: var(--gold); font-family: var(--mono); font-size: 0.7rem;">MICROSOFT</h5>
-                <p style="font-family: var(--serif); font-size: 1.1rem;">AI Fundamentals</p>
-                <p style="color: var(--text-muted); font-size: 0.8rem;">Neural networks & ML core concepts.</p>
+            <div>
+                <span class="section-label">04. Studies</span>
+                <div class="timeline">
+                    <div class="timeline-item" style="margin-bottom: 2.5rem;">
+                        <span class="timeline-date">2022 — 2025</span>
+                        <h3 class="timeline-title" style="font-size: 1.4rem;">Bachelor in Informatics</h3>
+                        <span class="timeline-sub">Czech University of Life Sciences</span>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-title" style="font-size: 1.4rem;">Diploma in Information Technology</h3>
+                        <span class="timeline-sub">R. C. Technical Institute | GPA: 8.22</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="wrapper" id="education">
-        <span class="section-label">04. Academic Background</span>
-        <div class="timeline">
-            <div class="timeline-item">
-                <span class="timeline-date">2022 — 2025</span>
-                <h3 class="timeline-title">Bachelor in Informatics</h3>
-                <span class="timeline-sub">Czech University of Life Sciences</span>
-            </div>
-            <div class="timeline-item">
-                <h3 class="timeline-title">Diploma in Information Technology</h3>
-                <span class="timeline-sub">R. C. Technical Institute | GPA: 8.22</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="wrapper" id="contact" style="background: rgba(0,0,0,0.4); border-top: 1px solid var(--border);">
-        <h2 style="font-family: var(--serif); font-size: 3rem; text-align: center; margin-bottom: 3rem;">Message
-            <em>Me</em></h2>
+    <div class="wrapper" id="contact" style="background: rgba(0,0,0,0.5); border-top: 1px solid var(--border);">
         <div class="grid-2">
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">Open to discussing Master Data strategy, API
-                    solution architecture, or Technical Associate roles.</p>
-                <div style="font-family: var(--mono); font-size: 0.85rem;">
+                <h2 style="font-family: var(--serif); font-size: 3.5rem; margin-bottom: 1.5rem;">Message <em
+                        style="color: var(--accent);">Me</em></h2>
+                <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.1rem;">Ready to discuss SAP
+                    S/4HANA integration, API solution architecture, or Technical Specialist opportunities.</p>
+                <div style="font-family: var(--mono); font-size: 0.9rem; color: var(--gold); line-height: 2;">
                     <p>📍 Prague, Czechia</p>
                     <p>📧 dipeshsuthar2653@gmail.com</p>
                     <p>🔗 <a href="https://linkedin.com/in/dipesh-suthar"
-                            style="color: var(--accent);">linkedin.com/in/dipesh-suthar</a></p>
+                            style="color: var(--accent); text-decoration: none;">linkedin.com/in/dipesh-suthar ↗</a></p>
                 </div>
             </div>
-            <div class="card" style="background: rgba(0,0,0,0.5);">
-                <form action="#" style="display: flex; flex-direction: column; gap: 1.2rem;">
-                    <input type="text" placeholder="Name"
-                        style="padding: 1rem; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: #fff;">
-                    <input type="email" placeholder="Email"
-                        style="padding: 1rem; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: #fff;">
-                    <textarea placeholder="Tell me about your project needs..." rows="4"
-                        style="padding: 1rem; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: #fff;"></textarea>
+            <div class="card">
+                <form action="#" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <input type="text" placeholder="Full Name"
+                        style="padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; color: #fff; font-family: var(--sans);">
+                    <input type="email" placeholder="Email Address"
+                        style="padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; color: #fff; font-family: var(--sans);">
+                    <textarea placeholder="Tell me about your technical needs..." rows="5"
+                        style="padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; color: #fff; font-family: var(--sans);"></textarea>
                     <div class="galaxy-button" style="width: 100%;">
                         <button type="submit" style="width: 100%; justify-content: center;">
                             <span class="spark"></span><span class="backdrop"></span>
-                            <span class="text">SEND MESSAGE</span>
+                            <span class="text">SEND SECURE MESSAGE</span>
                         </button>
                     </div>
                 </form>
@@ -565,7 +531,7 @@
     </div>
 
     <script>
-        /* ── BG CANVAS ── */
+        /* ── BG CANVAS PARTICLES ── */
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -584,7 +550,8 @@
             ctx.fillStyle = 'rgba(79, 142, 247, 0.2)';
             particles.forEach(p => {
                 p.x += p.speedX; p.y += p.speedY;
-                if (p.x > canvas.width) p.x = 0; if (p.y > canvas.height) p.y = 0;
+                if (p.x > canvas.width) p.x = 0; if (p.x < 0) p.x = canvas.width;
+                if (p.y > canvas.height) p.y = 0; if (p.y < 0) p.y = canvas.height;
                 ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
             });
             requestAnimationFrame(animateBG);
@@ -594,9 +561,9 @@
         const RANDOM = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
         document.querySelectorAll('.star').forEach(s => {
             s.setAttribute('style', `
-                --duration: ${RANDOM(6, 15)}; --delay: ${RANDOM(1, 10)};
-                --alpha: ${RANDOM(40, 90) / 100}; --size: ${RANDOM(2, 5)};
-                --distance: ${RANDOM(40, 150)};
+                --duration: ${RANDOM(8, 20)}; --delay: ${RANDOM(1, 10)};
+                --alpha: ${RANDOM(30, 80) / 100}; --size: ${RANDOM(2, 4)};
+                --distance: ${RANDOM(40, 160)};
             `);
         });
 
