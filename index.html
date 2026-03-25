@@ -51,7 +51,7 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
-            opacity: 0.4;
+            opacity: 0.3;
         }
 
         /* ── ANCHOR POSITIONED NAVIGATION ── */
@@ -78,17 +78,12 @@
             anchor-name: --test;
         }
 
-        nav::before {
-            z-index: -2;
-            background-attachment: fixed;
-            background-image: url("https://images.unsplash.com/photo-1751220170218-e57d53bd4aa8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1800");
-        }
-
         nav::after {
             backdrop-filter: blur(10px);
             background-color: hsl(215 100% 50% / 0.15);
             z-index: -1;
-            border: 1px solid var(--accent);
+            border: 1px solid var(--border);
+            border-radius: 8px;
         }
 
         nav>ul {
@@ -105,9 +100,8 @@
             z-index: -3;
             inset: -4px;
             border-radius: 12px;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(8px);
-            border: 1px solid var(--border);
         }
 
         nav::before,
@@ -137,56 +131,13 @@
             text-decoration: none;
             color: white;
             font-family: var(--mono);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
         nav a:hover {
             anchor-name: --test;
-        }
-
-        /* ── HERO & SECTIONS ── */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 10% 60px;
-            gap: 4rem;
-            background: linear-gradient(to bottom, transparent, var(--navy));
-        }
-
-        .hero-content {
-            flex: 1;
-            animation: fadeIn 1s ease;
-        }
-
-        h1 {
-            font-family: var(--serif);
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 1;
-            margin: 1rem 0;
-        }
-
-        h1 em {
-            color: var(--accent);
-            font-style: italic;
-        }
-
-        .role-tag {
-            font-family: var(--mono);
-            color: var(--gold);
-            letter-spacing: 3px;
-            font-size: 0.85rem;
-        }
-
-        .role-details {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            border-left: 2px solid var(--accent);
-            padding-left: 1.5rem;
         }
 
         /* ── GALAXY BUTTON ── */
@@ -203,7 +154,7 @@
         .galaxy-button button {
             --cut: 0.1em;
             background: hsl(var(--hue) calc(var(--active) * 100%) calc(12% - (var(--active) * 8%)));
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-family: var(--mono);
             border: 0;
             cursor: pointer;
@@ -218,11 +169,21 @@
             color: #fff;
         }
 
-        /* ── CARDS WITH HOVER ── */
+        /* ── LAYOUT & SECTIONS ── */
         .wrapper {
-            padding: 6rem 10%;
+            padding: 8rem 10% 4rem;
             max-width: 1300px;
             margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: var(--mono);
+            color: var(--gold);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 2rem;
         }
 
         .grid-2 {
@@ -243,44 +204,88 @@
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--accent);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
 
-        /* ── ANIMATIONS ── */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* ── TIMELINE ── */
+        .timeline {
+            position: relative;
+            border-left: 1px solid var(--border);
+            padding-left: 2rem;
+            margin-left: 1rem;
         }
 
-        @media (max-width: 768px) {
-            nav {
-                width: 90%;
-            }
-
-            nav a {
-                padding: 0.6rem;
-                font-size: 0.6rem;
-            }
-
-            #hero {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .role-details {
-                border: none;
-                padding: 0;
-            }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
         }
 
-        /* Galaxy Star CSS (Condensed) */
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: calc(-2rem - 5px);
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .timeline-date {
+            font-family: var(--mono);
+            color: var(--gold);
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .timeline-title {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-sub {
+            font-family: var(--mono);
+            color: var(--accent);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* ── HERO ── */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 10% 60px;
+            gap: 4rem;
+            background: linear-gradient(to bottom, transparent, var(--navy));
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1;
+            margin: 1rem 0;
+        }
+
+        h1 em {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .role-details {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            border-left: 2px solid var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        /* Stars & Spark logic from previous prompt preserved below */
         .star {
             height: calc(var(--size) * 1px);
             aspect-ratio: 1;
@@ -363,6 +368,29 @@
             background: inherit;
             border-radius: 2rem;
         }
+
+        @media (max-width: 768px) {
+            nav {
+                width: 95%;
+                top: 10px;
+            }
+
+            nav a {
+                padding: 0.5rem;
+                font-size: 0.55rem;
+            }
+
+            #hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 180px;
+            }
+
+            .role-details {
+                border: none;
+                padding: 0;
+            }
+        }
     </style>
 </head>
 
@@ -375,40 +403,35 @@
             <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#education">Studies</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <section id="hero">
         <div class="hero-content">
-            <span class="role-tag">TECHNICAL SOLUTION ASSOCIATE @ EXPEDIA GROUP</span>
+            <span
+                style="font-family: var(--mono); color: var(--gold); letter-spacing: 3px; font-size: 0.8rem;">TECHNICAL
+                SOLUTION ASSOCIATE @ EXPEDIA GROUP</span>
             <h1>Dipesh<br><em>Suthar</em></h1>
             <div class="role-details">
-                <p style="margin-bottom: 1rem;"><strong>Current Impact:</strong> Optimizing partner connectivity and
-                    troubleshooting high-concurrency API integrations for global travel supply. I specialize in bridging
-                    the gap between legacy data systems and modern cloud-native architectures.</p>
-                <p>Focused on SAP S/4HANA Master Data strategy, ensuring data integrity across complex distributed
-                    systems to drive scalable business growth.</p>
+                <p><strong>Current Impact:</strong> Optimizing partner connectivity and troubleshooting high-concurrency
+                    API integrations for global travel supply. I specialize in bridging the gap between legacy data
+                    systems and modern cloud-native architectures.</p>
             </div>
-
             <div class="galaxy-button">
                 <button onclick="window.location.href='#contact'">
-                    <span class="spark"></span>
-                    <span class="backdrop"></span>
-                    <span class="galaxy">
-                        <span class="galaxy__ring">
+                    <span class="spark"></span><span class="backdrop"></span>
+                    <span class="galaxy"><span class="galaxy__ring">
                             <span class="star"></span><span class="star"></span><span class="star"></span><span
                                 class="star"></span><span class="star"></span>
-                            <span class="star"></span><span class="star"></span><span class="star"></span><span
-                                class="star"></span><span class="star"></span>
-                        </span>
-                    </span>
+                        </span></span>
                     <span class="text">START A CONVERSATION</span>
                 </button>
             </div>
         </div>
-        <div class="photo-card"
-            style="width: 320px; height: 400px; border: 1px solid var(--border); border-radius: 20px; overflow: hidden; position: relative;">
+        <div
+            style="width: 320px; height: 420px; border-radius: 24px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
             <img src="img/new_profile.png" alt="Dipesh Suthar" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
     </section>
@@ -416,45 +439,122 @@
     <div class="wrapper" id="about">
         <div class="grid-2">
             <div class="card">
-                <h3 style="font-family: var(--serif); font-size: 1.8rem; margin-bottom: 1rem; color: var(--accent);">
+                <h3 style="font-family: var(--serif); font-size: 2rem; margin-bottom: 1rem; color: var(--accent);">
                     Technical <em>Leadership</em></h3>
                 <p style="color: var(--text-muted);">As a specialist at Expedia Group, I handle end-to-end technical
                     solutions for internal teams and external partners. My work ensures that customer master data
-                    remains a "single source of truth," reducing operational friction by up to 30% through automated
-                    cleansing scripts.</p>
+                    remains a "single source of truth."</p>
             </div>
             <div class="card">
-                <h3 style="font-family: var(--serif); font-size: 1.8rem; margin-bottom: 1rem; color: var(--gold);">Data
+                <h3 style="font-family: var(--serif); font-size: 2rem; margin-bottom: 1rem; color: var(--gold);">Data
                     <em>Architecture</em></h3>
-                <p style="color: var(--text-muted);">Mastery in SAP S/4HANA, ServiceNow, and API integration. I don't
-                    just manage data; I build the pipelines that allow data to flow securely between ERP systems and
-                    frontend travel applications.</p>
+                <p style="color: var(--text-muted);">Mastery in SAP S/4HANA, ServiceNow, and API integration. I build
+                    the pipelines that allow data to flow securely between ERP systems and frontend applications.</p>
             </div>
         </div>
     </div>
 
-    <div class="wrapper" id="contact">
+    <div class="wrapper" id="experience">
+        <span class="section-label">01. Professional Experience</span>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-date">MAR 2025 — PRESENT</span>
+                <h3 class="timeline-title">Technical Solution Associate</h3>
+                <span class="timeline-sub">Expedia Group | Prague, Czechia</span>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Implementing technical travel solutions and
+                    troubleshooting API performance. Analyzing technical requirements to translate business needs into
+                    scalable architectures.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">JUN 2022 — MAR 2025</span>
+                <h3 class="timeline-title">Night Receptionist / Auditor</h3>
+                <span class="timeline-sub">Hotel Emblem Prague</span>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Managed complex corporate check-ins and
+                    high-stakes auditing using the Mews hospitality system, ensuring 100% data accuracy during night
+                    cycles.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper" id="projects">
+        <span class="section-label">02. Selected Projects</span>
         <div class="grid-2">
-            <div style="padding-right: 2rem;">
-                <h2 style="font-family: var(--serif); font-size: 3rem; margin-bottom: 1.5rem;">Message <em>Me</em></h2>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">I am currently based in Prague and open to
-                    discussing Master Data strategy, API solution architecture, or Technical Associate roles.</p>
-                <div style="font-family: var(--mono); font-size: 0.9rem; color: var(--gold);">
-                    <p>📍 Prague, Czechia</p>
-                    <p>📧 dipeshsuthar2653@gmail.com</p>
-                    <p>🔗 <a href="#" style="color: var(--accent);">linkedin.com/in/dipesh-suthar</a></p>
-                </div>
+            <div class="card">
+                <h4 style="font-family: var(--serif); font-size: 1.4rem; margin-bottom: 0.5rem;">Find My Salon</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">PHP-based platform for
+                    salon discovery and appointment booking with integrated secure online payments.</p>
+                <span style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent);">PHP • MySQL •
+                    JavaScript</span>
             </div>
             <div class="card">
+                <h4 style="font-family: var(--serif); font-size: 1.4rem; margin-bottom: 0.5rem;">Cafe Billing System
+                </h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">C# WinForms application
+                    designed for real-time order tracking, financial reporting, and automated receipt generation.</p>
+                <span style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent);">C# • .NET • SQL
+                    Server</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper" id="certificates">
+        <span class="section-label">03. Certificates</span>
+        <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <div class="card" style="padding: 1.5rem;">
+                <h5 style="color: var(--gold); font-family: var(--mono); font-size: 0.7rem;">SERVICENOW</h5>
+                <p style="font-family: var(--serif); font-size: 1.1rem;">Public Learning Resume</p>
+                <a href="https://nowlearning.servicenow.com/lxp/en/pages/nl-public-resume?id=nl_public&user=dipeshsuth246379"
+                    target="_blank"
+                    style="color: var(--accent); font-size: 0.8rem; text-decoration: none; margin-top: 1rem; display: block;">Verify
+                    ↗</a>
+            </div>
+            <div class="card" style="padding: 1.5rem;">
+                <h5 style="color: var(--gold); font-family: var(--mono); font-size: 0.7rem;">MICROSOFT</h5>
+                <p style="font-family: var(--serif); font-size: 1.1rem;">AI Fundamentals</p>
+                <p style="color: var(--text-muted); font-size: 0.8rem;">Neural networks & ML core concepts.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper" id="education">
+        <span class="section-label">04. Academic Background</span>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-date">2022 — 2025</span>
+                <h3 class="timeline-title">Bachelor in Informatics</h3>
+                <span class="timeline-sub">Czech University of Life Sciences</span>
+            </div>
+            <div class="timeline-item">
+                <h3 class="timeline-title">Diploma in Information Technology</h3>
+                <span class="timeline-sub">R. C. Technical Institute | GPA: 8.22</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper" id="contact" style="background: rgba(0,0,0,0.4); border-top: 1px solid var(--border);">
+        <h2 style="font-family: var(--serif); font-size: 3rem; text-align: center; margin-bottom: 3rem;">Message
+            <em>Me</em></h2>
+        <div class="grid-2">
+            <div>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Open to discussing Master Data strategy, API
+                    solution architecture, or Technical Associate roles.</p>
+                <div style="font-family: var(--mono); font-size: 0.85rem;">
+                    <p>📍 Prague, Czechia</p>
+                    <p>📧 dipeshsuthar2653@gmail.com</p>
+                    <p>🔗 <a href="https://linkedin.com/in/dipesh-suthar"
+                            style="color: var(--accent);">linkedin.com/in/dipesh-suthar</a></p>
+                </div>
+            </div>
+            <div class="card" style="background: rgba(0,0,0,0.5);">
                 <form action="#" style="display: flex; flex-direction: column; gap: 1.2rem;">
                     <input type="text" placeholder="Name"
-                        style="padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; color: #fff;">
+                        style="padding: 1rem; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: #fff;">
                     <input type="email" placeholder="Email"
-                        style="padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; color: #fff;">
+                        style="padding: 1rem; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: #fff;">
                     <textarea placeholder="Tell me about your project needs..." rows="4"
-                        style="padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; color: #fff;"></textarea>
-                    <div class="galaxy-button">
-                        <button type="submit">
+                        style="padding: 1rem; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: #fff;"></textarea>
+                    <div class="galaxy-button" style="width: 100%;">
+                        <button type="submit" style="width: 100%; justify-content: center;">
                             <span class="spark"></span><span class="backdrop"></span>
                             <span class="text">SEND MESSAGE</span>
                         </button>
@@ -472,7 +572,7 @@
         function initBG() {
             canvas.width = window.innerWidth; canvas.height = window.innerHeight;
             particles = [];
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 40; i++) {
                 particles.push({
                     x: Math.random() * canvas.width, y: Math.random() * canvas.height,
                     size: Math.random() * 2, speedX: Math.random() * 0.2 - 0.1, speedY: Math.random() * 0.2 - 0.1
@@ -481,9 +581,10 @@
         }
         function animateBG() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(79, 142, 247, 0.3)';
+            ctx.fillStyle = 'rgba(79, 142, 247, 0.2)';
             particles.forEach(p => {
                 p.x += p.speedX; p.y += p.speedY;
+                if (p.x > canvas.width) p.x = 0; if (p.y > canvas.height) p.y = 0;
                 ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
             });
             requestAnimationFrame(animateBG);
