@@ -9,7 +9,6 @@
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700&display=swap"
         rel="stylesheet" />
     <style>
-        /* ── RESET & VARIABLES ── */
         *,
         *::before,
         *::after {
@@ -45,30 +44,6 @@
         }
 
         /* ── ANIMATIONS ── */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulseGlow {
-
-            0%,
-            100% {
-                opacity: 0.5;
-            }
-
-            50% {
-                opacity: 0.8;
-            }
-        }
-
         @keyframes float {
 
             0%,
@@ -84,19 +59,12 @@
         .reveal {
             opacity: 0;
             transition: all 0.8s cubic-bezier(0.17, 0.55, 0.55, 1);
+            transform: translateY(30px);
         }
 
         .reveal.visible {
             opacity: 1;
-            transform: translateY(0) !important;
-        }
-
-        .slide-up {
-            transform: translateY(50px);
-        }
-
-        .slide-left {
-            transform: translateX(-50px);
+            transform: translateY(0);
         }
 
         /* ── NAVIGATION ── */
@@ -133,13 +101,6 @@
             color: var(--accent);
         }
 
-        .nav-cta {
-            border: 1px solid var(--accent);
-            padding: 0.5rem 1.2rem;
-            border-radius: 4px;
-            color: var(--accent) !important;
-        }
-
         /* ── HERO ── */
         #hero {
             height: 100vh;
@@ -147,22 +108,7 @@
             grid-template-columns: 1.2fr 0.8fr;
             align-items: center;
             padding: 0 10%;
-            position: relative;
             gap: 2rem;
-        }
-
-        .hero-content {
-            z-index: 2;
-        }
-
-        .hero-bg-glow {
-            position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            animation: pulseGlow 5s infinite;
         }
 
         h1 {
@@ -177,71 +123,43 @@
             font-style: italic;
         }
 
-        .tagline {
-            font-family: var(--mono);
-            color: var(--gold);
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Photo Placeholder Styling */
-        .hero-image-area {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-            animation: float 6s ease-in-out infinite;
-        }
-
         .photo-card {
             width: 320px;
             height: 400px;
-            background: var(--navy-light);
             border: 1px solid var(--border);
             border-radius: 12px;
-            position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            animation: float 6s ease-in-out infinite;
+            background: var(--navy-light);
         }
 
         .photo-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.8;
+            display: block;
         }
 
-        .photo-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #101a30, #080d1a);
-        }
-
-        .photo-placeholder span {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            margin-top: 1rem;
-        }
-
-        /* ── CONTENT BLOCKS ── */
+        /* ── SECTIONS ── */
         .wrapper {
-            padding: 8rem 10%;
+            padding: 6rem 10%;
             max-width: 1400px;
             margin: 0 auto;
         }
 
+        .section-label {
+            font-family: var(--mono);
+            color: var(--gold);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
         .grid-2 {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
+            grid-template-columns: 1fr 1fr;
             gap: 4rem;
         }
 
@@ -249,69 +167,47 @@
             background: var(--navy-light);
             border: 1px solid var(--border);
             padding: 2rem;
-            border-radius: 12px;
-            transition: 0.4s;
-            position: relative;
+            border-radius: 8px;
+            transition: 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-10px);
             border-color: var(--accent);
+            transform: translateY(-5px);
         }
 
-        .skill-tag {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: rgba(79, 142, 247, 0.1);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            margin: 0.3rem;
-            transition: 0.3s;
-        }
-
-        .timeline-item {
-            border-left: 2px solid var(--border);
-            padding-left: 2rem;
-            margin-bottom: 3.5rem;
-            position: relative;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: -7px;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
+        /* ── CONTACT FORM ── */
+        .contact-form-container {
             background: var(--navy-light);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--text);
-            transition: 0.3s;
+            padding: 2.5rem;
+            border-radius: 12px;
         }
 
-        .contact-link:hover {
-            background: var(--accent-glow);
-            transform: translateX(5px);
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-control {
+            width: 100%;
+            background: var(--navy);
+            border: 1px solid var(--border);
+            padding: 0.8rem;
+            color: var(--text);
+            font-family: var(--sans);
+            border-radius: 4px;
+        }
+
+        .btn-submit {
+            background: var(--accent);
+            color: var(--navy);
+            border: none;
+            padding: 1rem;
+            font-family: var(--mono);
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
         }
 
         @media (max-width: 1024px) {
@@ -319,24 +215,16 @@
                 padding: 1rem 2rem;
             }
 
-            .nav-links {
-                display: none;
-            }
-
-            #hero {
+            #hero,
+            .grid-2 {
                 grid-template-columns: 1fr;
-                padding-top: 120px;
                 height: auto;
+                padding-top: 100px;
                 text-align: center;
             }
 
-            .hero-image-area {
-                order: -1;
-                margin-bottom: 3rem;
-            }
-
-            .grid-2 {
-                grid-template-columns: 1fr;
+            .photo-card {
+                margin: 0 auto;
             }
         }
     </style>
@@ -349,182 +237,150 @@
             style="font-family: var(--serif); font-size: 1.5rem; color: var(--accent); text-decoration: none;">DS.</a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
-            <li><a href="#experience">Work Experience</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#certificates">Certificates</a></li>
-            <li><a href="#education">Study Experience</a></li>
-            <li><a href="mailto:dipeshsuthar2653@gmail.com" class="nav-cta">Hire Me</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <section id="hero">
-        <div class="hero-bg-glow"></div>
         <div class="hero-content">
-            <h1 class="reveal slide-up" style="transition-delay: 0.3s;">Dipesh<br><em>Suthar</em></h1>
-            <p class="tagline reveal slide-up" style="transition-delay: 0.1s;">Technical Solution Associate @ Expedia
-                Group</p>
-            <p class="reveal slide-up"
-                style="max-width: 600px; color: var(--text-muted); margin-bottom: 2.5rem; transition-delay: 0.5s;">
-                Specializing in Master Data Management and technical integrations, ensuring data availability and system
-                integrity at scale.
+            <p style="font-family: var(--mono); color: var(--gold); letter-spacing: 2px;">// TECHNICAL SOLUTION
+                ASSOCIATE @ EXPEDIA</p>
+            <h1>Dipesh<br><em>Suthar</em></h1>
+            <p style="color: var(--text-muted); max-width: 500px; margin-bottom: 2rem;">
+                Informatics student & Master Data Specialist based in Prague, Czechia.
             </p>
-            <div class="reveal slide-up" style="transition-delay: 0.7s;">
-                <a href="#experience" class="skill-tag"
-                    style="padding: 1rem 2.5rem; background: var(--accent); color: var(--navy); font-weight: bold; border: none; text-decoration: none;">View
-                    Experience</a>
-            </div>
+            <a href="#contact"
+                style="display:inline-block; padding: 1rem 2rem; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: 0.8rem;">Hire
+                Me</a>
         </div>
-
-        <div class="hero-image-area reveal slide-up" style="transition-delay: 0.5s;">
-            <div class="photo-card">
-                <img src="img/img_profile.png" alt="Dipesh Suthar"
-                    style="width: 100%; height: 100%; object-fit: cover; display: block;">
-
-                <div
-                    style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(8, 13, 26, 0.3), transparent); pointer-events: none;">
-                </div>
-            </div>
+        <div class="photo-card">
+            <img src="img/img_profile.png" alt="Dipesh Suthar Profile">
         </div>
     </section>
 
     <div class="wrapper" id="about">
+        <span class="section-label reveal">01. Profile</span>
         <div class="grid-2">
-            <div class="reveal slide-left">
-                <h2 style="font-family: var(--serif); font-size: 2.8rem; margin-bottom: 1.5rem;">The <em>Expertise</em>
-                </h2>
-                <p style="color: var(--text-muted); margin-bottom: 1.2rem;">
-                    Informatics student with expertise in customer master data management, data analysis, IT systems,
-                    and SAP S/4HANA integration.
-                </p>
-                <p style="color: var(--text-muted); margin-bottom: 1.2rem;">
-                    Skilled in data cleansing, aggregation, and error analysis, with hands-on experience in data
-                    monitoring and validation. I focus on optimizing systems to ensure data quality and availability.
-                </p>
+            <div class="reveal">
+                <h2 style="font-family: var(--serif); font-size: 2.5rem; margin-bottom: 1.5rem;">Analytical
+                    <em>Mindset</em></h2>
                 <p style="color: var(--text-muted);">
-                    Seeking to leverage analytical and technical skills as a <strong>Master Data Specialist</strong>.
+                    Informatics student with expertise in customer master data management, data analysis, IT systems,
+                    and SAP S/4HANA integration. Skilled in data cleansing, aggregation, and error analysis to ensure
+                    high data quality.
                 </p>
             </div>
-            <div class="reveal" style="transition-delay: 0.3s;">
-                <h3
-                    style="font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; letter-spacing: 1px;">
-                    Core Competencies</h3>
-                <div class="skills-container">
-                    <span class="skill-tag">SAP S/4HANA</span> <span class="skill-tag">Data Cleansing</span>
-                    <span class="skill-tag">ServiceNow</span> <span class="skill-tag">API Integration</span>
-                    <span class="skill-tag">Data Validation</span> <span class="skill-tag">Error Analysis</span>
+            <div class="reveal">
+                <p style="font-family: var(--mono); color: var(--gold); margin-bottom: 1rem;">Core Competencies</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <span style="padding: 0.4rem 0.8rem; border: 1px solid var(--border); font-size: 0.7rem;">SAP
+                        S/4HANA</span>
+                    <span style="padding: 0.4rem 0.8rem; border: 1px solid var(--border); font-size: 0.7rem;">Data
+                        Cleansing</span>
+                    <span style="padding: 0.4rem 0.8rem; border: 1px solid var(--border); font-size: 0.7rem;">API
+                        Implementation</span>
+                    <span style="padding: 0.4rem 0.8rem; border: 1px solid var(--border); font-size: 0.7rem;">System
+                        Monitoring</span>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="wrapper" id="experience">
-        <h2 class="reveal slide-up" style="font-family: var(--serif); font-size: 2.8rem; margin-bottom: 4rem;">Career
-            <em>Path</em>
-        </h2>
-        <div class="timeline">
-            <div class="timeline-item reveal slide-up">
-                <p style="font-family: var(--mono); color: var(--gold); font-size: 0.8rem;">MAR 2025 — PRESENT</p>
-                <h3 style="font-size: 1.5rem;">Technical Solution Associate</h3>
-                <p style="color: var(--accent); margin-bottom: 1rem;">Expedia Group · Full-time · Prague</p>
-                <ul style="color: var(--text-muted); padding-left: 1.2rem; font-size: 0.9rem;">
-                    <li style="margin-bottom: 0.5rem;">Collaborate with internal teams and external partners to
-                        implement technical travel solutions.</li>
-                    <li style="margin-bottom: 0.5rem;">Troubleshoot and resolve technical issues related to APIs, system
-                        integrations, and partner connectivity.</li>
-                    <li style="margin-bottom: 0.5rem;">Assist in onboarding new partners by providing technical guidance
-                        and ensuring successful product integration.</li>
-                    <li>Analyze technical requirements and translate business needs into scalable solutions.</li>
-                </ul>
-            </div>
+        <span class="section-label reveal">02. Career</span>
+        <div class="reveal" style="margin-bottom: 3rem;">
+            <h3 style="font-size: 1.4rem;">Technical Solution Associate</h3>
+            <p style="color: var(--accent); font-family: var(--mono); font-size: 0.8rem;">Expedia Group | Mar 2025 —
+                Present</p>
+            <ul style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem; padding-left: 1.2rem;">
+                <li style="margin-bottom: 0.4rem;">Collaborate with internal teams and external partners to implement
+                    technical travel solutions.</li>
+                <li style="margin-bottom: 0.4rem;">Troubleshoot and resolve technical issues related to APIs and partner
+                    connectivity.</li>
+                <li>Analyze technical requirements and translate business needs into scalable solutions.</li>
+            </ul>
+        </div>
+    </div>
 
-            <div class="timeline-item reveal slide-up">
-                <p style="font-family: var(--mono); color: var(--gold); font-size: 0.8rem;">2022 — 2025</p>
-                <h3 style="font-size: 1.5rem;">Night Receptionist / Auditor</h3>
-                <p style="color: var(--accent); margin-bottom: 1rem;">Hotel Emblem Prague</p>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Managed guest inquiries and corporate check-ins
-                    using the Mews system, ensuring high service standards.</p>
+    <div class="wrapper" id="projects">
+        <span class="section-label reveal">03. Projects</span>
+        <div class="grid-2">
+            <div class="card reveal">
+                <h4 style="margin-bottom: 0.5rem;">Find My Salon Website</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">PHP website for searching salons, booking
+                    appointments, and online payments[cite: 9].</p>
+            </div>
+            <div class="card reveal">
+                <h4 style="margin-bottom: 0.5rem;">BlackJack Game</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Python-based card game simulation with
+                    automated result logging[cite: 8].</p>
             </div>
         </div>
     </div>
 
     <div class="wrapper" id="certificates">
-        <h2 class="reveal slide-up" style="font-family: var(--serif); font-size: 2.8rem; margin-bottom: 4rem;">Technical
-            <em>Certs</em>
-        </h2>
-        <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-            <div class="card reveal slide-up">
-                <p style="font-family: var(--mono); color: var(--accent); font-size: 0.7rem;">SERVICENOW</p>
-                <h4 style="margin: 0.5rem 0;">Now Learning Public Profile</h4>
-                <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1rem;">Official verification of
-                    ServiceNow platform training and expertise.</p>
-                <a href="https://nowlearning.servicenow.com/lxp/en/pages/nl-public-resume?id=nl_public&user=dipeshsuth246379"
-                    target="_blank" class="skill-tag" style="margin:0; border:1px solid var(--accent);">Public Resume
-                    ↗</a>
+        <span class="section-label reveal">04. Certifications</span>
+        <div class="grid-2">
+            <div class="card reveal">
+                <p style="font-family: var(--mono); color: var(--gold); font-size: 0.65rem;">MICROSOFT LEARN</p>
+                <h4 style="margin-bottom: 0.5rem;">Fundamental AI Concepts</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Machine learning, neural networks, and NLP core
+                    concepts[cite: 14, 15].</p>
             </div>
-            <div class="card reveal slide-up">
-                <p style="font-family: var(--mono); color: var(--accent); font-size: 0.7rem;">SIMPLILEARN</p>
-                <h4 style="margin: 0.5rem 0;">Data Analytics</h4>
-                <p style="color: var(--text-muted); font-size: 0.8rem;">Focused on data visualization, cleaning, and
-                    statistical methodology.</p>
+            <div class="card reveal">
+                <p style="font-family: var(--mono); color: var(--gold); font-size: 0.65rem;">SIMPLILEARN</p>
+                <h4 style="margin-bottom: 0.5rem;">Data Analytics</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Foundation in data visualization, cleaning, and
+                    statistical methodology[cite: 11].</p>
             </div>
         </div>
     </div>
 
-    <div class="wrapper" id="education">
-        <h2 class="reveal slide-up" style="font-family: var(--serif); font-size: 2.8rem; margin-bottom: 4rem;">Academic
-            <em>History</em>
-        </h2>
-        <div class="timeline">
-            <div class="timeline-item reveal slide-up">
-                <h3 style="font-size: 1.5rem;">Bachelor in Informatics</h3>
-                <p style="color: var(--accent);">Czech University of Life Sciences</p>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Prague, Czechia | 2022 — 2025</p>
+    <div class="wrapper" id="contact">
+        <span class="section-label reveal">05. Connect</span>
+        <div class="grid-2">
+            <div class="reveal">
+                <h2 style="font-family: var(--serif); font-size: 2.5rem; margin-bottom: 1.5rem;">Get in <em>Touch</em>
+                </h2>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <a href="https://www.linkedin.com/in/dipesh-suthar-5710a313b" target="_blank"
+                        style="color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: 0.8rem;">LinkedIn
+                        Profile ↗</a>
+                    <a href="https://nowlearning.servicenow.com/lxp/en/pages/nl-public-resume?id=nl_public&user=dipeshsuth246379"
+                        target="_blank"
+                        style="color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: 0.8rem;">ServiceNow
+                        Resume ↗</a>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Email: dipeshsuthar2653@gmail.com [cite: 1]
+                    </p>
+                </div>
             </div>
-            <div class="timeline-item reveal slide-up">
-                <h3 style="font-size: 1.5rem;">Diploma in IT</h3>
-                <p style="color: var(--accent);">R. C. Technical Institute</p>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">GPA: 8.22</p>
-            </div>
-        </div>
-    </div>
 
-    <div class="wrapper" id="contact" style="background: var(--navy-light); border-top: 1px solid var(--border);">
-        <h2 class="reveal slide-up" style="font-family: var(--serif); font-size: 2.8rem; margin-bottom: 3rem;">Let's
-            <em>Connect</em>
-        </h2>
-        <div class="contact-grid">
-            <a href="https://www.linkedin.com/in/dipesh-suthar-5710a313b/" target="_blank"
-                class="contact-link reveal slide-up">
-                <div style="font-size: 1.2rem;">💼</div>
-                <div>
-                    <div style="font-weight: bold;">LinkedIn</div>
-                    <div style="font-size: 0.7rem; color: var(--text-muted);">dipesh-suthar-5710a313b</div>
-                </div>
-            </a>
-            <a href="mailto:dipeshsuthar2653@gmail.com" class="contact-link reveal slide-up">
-                <div style="font-size: 1.2rem;">✉️</div>
-                <div>
-                    <div style="font-weight: bold;">Email</div>
-                    <div style="font-size: 0.7rem; color: var(--text-muted);">dipeshsuthar2653@gmail.com</div>
-                </div>
-            </a>
+            <div class="contact-form-container reveal">
+                <form action="https://formspree.io/f/dipeshsuthar2653@gmail.com" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" rows="4" placeholder="Your Message"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
         </div>
-        <p
-            style="text-align: center; margin-top: 5rem; color: var(--text-dim); font-family: var(--mono); font-size: 0.65rem;">
-            © 2026 Dipesh Suthar | Prague, Czechia
-        </p>
     </div>
 
     <script>
-        const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
-
+        }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
